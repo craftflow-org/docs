@@ -1,42 +1,37 @@
 ---
-title: "Welcome to CraftFlow"
-description: "AI-powered tools for home service companies — call recording, analysis, and sales coaching for HVAC, plumbing, and electrical teams."
+title: "Craft Help Center"
+description: "Everything you need to get the most out of Craft."
+mode: "custom"
 ---
 
-<CardGroup cols={2}>
-  <Card title="Record field calls" icon="microphone" href="/help/call-recording/overview">
-    Capture and analyze calls from your technicians in the field.
-  </Card>
-  <Card title="Call Center AI" icon="headset" href="/help/call-center-ai/overview">
-    Automatically score and review every inbound call your CSRs take.
-  </Card>
-  <Card title="AI Voice Agent" icon="robot" href="/help/voice-agent/overview">
-    Let AI answer calls 24/7 and book jobs directly into your dispatch board.
-  </Card>
-  <Card title="Integrations" icon="plug" href="/help/integrations/overview">
-    Connect CraftFlow to ServiceTitan, HubSpot, and more.
-  </Card>
-</CardGroup>
+<div className="max-w-5xl mx-auto px-6">
+  <div className="flex flex-col items-center text-center pt-20 pb-14">
+    <h1 className="text-5xl font-bold text-[#183059] dark:text-white mb-5">
+      Craft Help Center
+    </h1>
+    <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">
+      Get answers on recording field calls, coaching your team, configuring the AI voice agent, and integrating with ServiceTitan — all in one place.
+    </p>
+  </div>
 
-## What is CraftFlow?
-
-CraftFlow is a platform built specifically for home service companies — HVAC, plumbing, electrical, and related trades. It gives owners, managers, and coaches the tools to:
-
-- **Record and analyze field calls** so you can coach technicians on real conversations, not role-plays.
-- **Score every inbound call** automatically so no booking opportunity slips through the cracks.
-- **Deploy an AI voice agent** that answers after-hours calls, books appointments, and handles basic customer questions without a dispatcher.
-- **Connect your existing software** so CraftFlow pulls in job data, customer history, and dispatch info from tools you already use.
-
-## Who uses CraftFlow?
-
-| Role | How they use CraftFlow |
-|------|------------------------|
-| **Owners & GMs** | Track team performance, spot revenue trends, review call scoring |
-| **Call Center Managers** | Monitor CSR performance, review flagged calls, assign coaching |
-| **Service Managers** | Review field tech recordings, assign ride-alongs, track checkpoints |
-| **Technicians** | Record calls via the mobile app, view their own feedback |
-| **CSRs** | See their scorecard results and coaching assignments |
-
-## Need help?
-
-Email us at [support@craftflow.com](mailto:support@craftflow.com) or use the chat widget in the app.
+  <CardGroup cols={3}>
+    <Card title="Getting Started" icon="rocket" href="/help/quickstart">
+      Set up your account, invite your team, and start recording calls.
+    </Card>
+    <Card title="Call Recording & Analysis" icon="microphone" href="/help/call-recording/overview">
+      Record field calls on mobile and review AI analysis in the web app.
+    </Card>
+    <Card title="Call Center AI" icon="headset" href="/help/call-center-ai/overview">
+      Score and coach on every inbound call your CSRs take.
+    </Card>
+    <Card title="AI Voice Agent" icon="robot" href="/help/voice-agent/overview">
+      Let AI answer calls 24/7 and book jobs automatically.
+    </Card>
+    <Card title="Integrations" icon="plug" href="/help/integrations/overview">
+      Connect ServiceTitan, HubSpot, and more.
+    </Card>
+    <Card title="API Reference" icon="code" href="/api/introduction">
+      Build custom integrations with the Craft API.
+    </Card>
+  </CardGroup>
+</div>

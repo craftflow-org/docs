@@ -1,39 +1,8 @@
 ---
 title: "Security Overview"
-description: "How CraftFlow protects your data and your customers' data."
+description: "How Craft protects your data and your customers' data."
 ---
 
-CraftFlow is built for home service companies that handle sensitive customer information — names, addresses, phone numbers, and payment data. We take the responsibility of handling that data seriously.
-
-## Infrastructure
-
-CraftFlow is hosted on **Amazon Web Services (AWS)** in the United States. We use industry-standard AWS services for compute, storage, and networking, with security configurations managed by our engineering team.
-
-- **Audio and call recordings** are stored in encrypted AWS S3 buckets
-- **Application data** is stored in AWS RDS (PostgreSQL) with encryption at rest
-- **Network traffic** is encrypted in transit using TLS 1.2+
-
-## Access controls
-
-- All CraftFlow employees with access to production systems use multi-factor authentication
-- Production database access is limited to a small number of engineering leads
-- Access is audited and reviewed regularly
-
-## Your account security
-
-- All user passwords are hashed using industry-standard algorithms (never stored in plaintext)
-- The API uses short-lived JWT tokens (60-minute expiry) to minimize exposure from token compromise
-- API keys can be revoked at any time from your settings
-
-## Responsible disclosure
-
-If you discover a security vulnerability in CraftFlow, please email [security@craftflow.com](mailto:security@craftflow.com). We ask that you give us reasonable time to investigate and remediate before disclosing publicly. We'll respond to all reports within 2 business days.
-
-<CardGroup cols={2}>
-  <Card title="Data & Privacy" icon="shield" href="/security/data-privacy">
-    How we handle, store, and retain your data.
-  </Card>
-  <Card title="Compliance" icon="certificate" href="/security/compliance">
-    Our compliance posture and certifications.
-  </Card>
-</CardGroup>
+<Note>
+  This page is coming soon.
+</Note>

@@ -1,0 +1,114 @@
+---
+title: "Auto-Start Recordings"
+description: "Trigger recordings automatically from your app using deep links — so field professionals never have to think about hitting record."
+---
+
+## Overview
+
+Recording calls is only valuable if it actually happens consistently. The best way to ensure that is to remove the manual step entirely.
+
+Craft accepts deep links that let your existing software — a field management app, a CRM, a dispatch system — automatically start and stop recordings at the right moment. The field professional opens their job, and recording starts. They complete the job, and recording stops. No extra taps required.
+
+<Note>
+  Auto-start deep links are currently supported on **iOS only**.
+</Note>
+
+---
+
+## How It Works
+
+Your app opens a `craftflow://` deep link at the right moment. Craft handles the recording action and then redirects the field professional back to your app — all in under a second.
+
+<Steps>
+  <Step title="Field professional opens a job in your app">
+    Your app constructs a Craft deep link for the `start` action and opens it.
+  </Step>
+  <Step title="Craft starts recording">
+    The Craft app comes to the foreground briefly, starts the recording, then immediately redirects back to your app via the `redirectUrl`.
+  </Step>
+  <Step title="Field professional completes the job">
+    They do their work normally. Recording is running in the background.
+  </Step>
+  <Step title="Your app triggers stop">
+    When the job is marked complete (or at any appropriate moment), your app opens a `stop` deep link. Craft saves the recording and redirects back.
+  </Step>
+</Steps>
+
+---
+
+## URL Format
+
+```
+craftflow://record?action={action}&appointmentId={appointmentId}&redirectUrl={redirectUrl}
+```
+
+---
+
+## Parameters
+
+<ParamField query="action" type="string" required>
+  The recording action to perform. Must be one of: `start`, `stop`, or `pause`.
+
+  - **`start`** — Starts a new recording. If a recording is already in progress, does nothing. If a recording is paused, resumes it.
+  - **`pause`** — Pauses the current recording. If no recording is in progress or it's already paused, does nothing.
+  - **`stop`** — Stops and saves the current recording. Skips any post-recording screens. If no recording is in progress, does nothing.
+
+  All actions are **idempotent** — it's safe to call them multiple times.
+</ParamField>
+
+<ParamField query="appointmentId" type="string">
+  The ID of the job or appointment this recording should be associated with. This links the recording to the correct job in Craft and is used for reporting and tracking.
+
+  Use your field management system's native job or appointment ID.
+</ParamField>
+
+<ParamField query="redirectUrl" type="string">
+  A URL-encoded URL that Craft will open after the action is performed. Use this to bring the field professional back to your app immediately after recording starts or stops.
+
+  Must be URL-encoded (e.g. `/` becomes `%2F`, `:` becomes `%3A`).
+</ParamField>
+
+---
+
+## Examples
+
+### Start a recording and redirect back to your app
+
+```
+craftflow://record?action=start&appointmentId=JOB-1234&redirectUrl=yourapp%3A%2F%2Fjobs%2FJOB-1234
+```
+
+### Pause a recording mid-job
+
+```
+craftflow://record?action=pause&appointmentId=JOB-1234
+```
+
+### Stop and save when the job is complete
+
+```
+craftflow://record?action=stop&appointmentId=JOB-1234&redirectUrl=yourapp%3A%2F%2Fjobs%2FJOB-1234%2Fcomplete
+```
+
+---
+
+## Integration Tips
+
+<Tip>
+  **Don't ask field professionals to tap a button.** The whole point of auto-start is that recording happens automatically as part of their existing workflow. Trigger `start` when they open a job and `stop` when they mark it complete.
+</Tip>
+
+- **Use Universal Links on iOS** for your `redirectUrl` (e.g. `https://yourapp.com/jobs/123`).
+- **URL-encode everything** in `redirectUrl` — encode the entire URL including the protocol.
+- **The `appointmentId` is important** — without it, recordings won't be linked to jobs in Craft's dashboard, making them harder to find and review.
+- **Test idempotency** — if your app could accidentally fire `start` twice (e.g. due to a navigation re-render), that's fine. Craft handles it gracefully.
+
+---
+
+## Behavior Reference
+
+| Current state | `start` | `pause` | `stop` |
+|--------------|---------|---------|--------|
+| Not recording | Starts recording | No-op | No-op |
+| Recording | No-op | Pauses recording | Stops & saves |
+| Paused | Resumes recording | No-op | Stops & saves |

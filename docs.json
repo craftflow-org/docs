@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "CraftFlow",
+  "name": "Craft",
   "colors": {
     "primary": "#183059",
-    "light": "#6989B1",
-    "dark": "#0E1B35"
+    "light": "#00CC88",
+    "dark": "#00CC88"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
@@ -16,14 +16,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@craftflow.com"
+        "label": "Log In",
+        "href": "https://app.craftflow.co"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Sign In",
-      "href": "https://app.craftflow.co"
+      "label": "Book a Demo",
+      "href": "https://craftflow.com/demo"
     }
   },
   "contextual": {
@@ -50,6 +50,7 @@
             "group": "Call Recording & Analysis",
             "pages": [
               "help/call-recording/overview",
+              "help/call-recording/auto-start",
               "help/call-recording/mobile-recording",
               "help/call-recording/reviewing-recordings"
             ]
@@ -125,28 +126,10 @@
       "anchors": [
         {
           "anchor": "Book a Demo",
-          "href": "https://craftflow.com",
+          "href": "https://craftflow.com/demo",
           "icon": "calendar"
         }
       ]
     }
-  },
-  "footer": {
-    "links": [
-      {
-        "title": "Product",
-        "items": [
-          { "label": "App", "href": "https://app.craftflow.co" },
-          { "label": "Website", "href": "https://craftflow.com" }
-        ]
-      },
-      {
-        "title": "Legal",
-        "items": [
-          { "label": "Privacy Policy", "href": "https://craftflow.com/privacy" },
-          { "label": "Terms of Service", "href": "https://craftflow.com/terms" }
-        ]
-      }
-    ]
   }
 }
