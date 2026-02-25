@@ -100,7 +100,6 @@ craftflow://record?action=stop&appointmentId=JOB-1234&redirectUrl=yourapp%3A%2F%
 
 - **Use Universal Links on iOS** for your `redirectUrl` (e.g. `https://yourapp.com/jobs/123`).
 - **URL-encode everything** in `redirectUrl` — encode the entire URL including the protocol.
-- **The `appointmentId` is important** — without it, recordings won't be linked to jobs in Craft's dashboard, making them harder to find and review.
 - **Test idempotency** — if your app could accidentally fire `start` twice (e.g. due to a navigation re-render), that's fine. Craft handles it gracefully.
 
 ---
