@@ -1,0 +1,52 @@
+---
+title: "ServiceTitan Integration"
+description: "Connect CraftFlow to ServiceTitan to sync jobs, customers, technicians, and booking availability."
+---
+
+The ServiceTitan integration is the most commonly used integration in CraftFlow. Once connected, CraftFlow can read your customer and job data, display nearby jobs to technicians in the field, and — if you're using the AI Voice Agent — book appointments directly into ServiceTitan.
+
+## What syncs
+
+| Data | Direction | Notes |
+|------|-----------|-------|
+| Customers | ServiceTitan → CraftFlow | Name, address, contact info, service history |
+| Jobs | ServiceTitan → CraftFlow | Job type, status, scheduled time, assigned tech |
+| Technicians | ServiceTitan → CraftFlow | Names, IDs used for assignment |
+| Business units | ServiceTitan → CraftFlow | Used to route jobs to the right team |
+| Job types | ServiceTitan → CraftFlow | Used to configure what the voice agent can book |
+| Appointments | CraftFlow → ServiceTitan | Voice agent bookings written back as new jobs |
+
+## Connecting ServiceTitan
+
+<Steps>
+  <Step title="Go to Integrations">
+    In CraftFlow, go to **Settings → Integrations** and click **ServiceTitan**.
+  </Step>
+  <Step title="Enter your ServiceTitan credentials">
+    You'll need your ServiceTitan **Tenant ID** and an API key. You can find these in ServiceTitan under **Settings → API Application Access**.
+  </Step>
+  <Step title="Authorize the connection">
+    Follow the OAuth flow to authorize CraftFlow to access your ServiceTitan account.
+  </Step>
+  <Step title="Configure sync settings">
+    Choose which business units and job types to sync. For voice agent bookings, select which job types the AI is allowed to create appointments for.
+  </Step>
+</Steps>
+
+## Nearby jobs for technicians
+
+Once ServiceTitan is connected, technicians using the CraftFlow mobile app can see **nearby jobs** — open jobs in ServiceTitan that are close to their current location. This is useful for cross-selling or upselling when a tech is already in a customer's neighborhood.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Jobs aren't syncing">
+    Check that your ServiceTitan API key has the correct permissions (read access to jobs, customers, and technicians). Keys with limited scopes may not sync all data.
+  </Accordion>
+  <Accordion title="The voice agent isn't booking into ServiceTitan">
+    Make sure the job types you've selected in the voice agent configuration match job types that exist in ServiceTitan. The names must match exactly.
+  </Accordion>
+  <Accordion title="I need to reconnect after a credential change">
+    Go to **Settings → Integrations → ServiceTitan** and click **Reconnect**. Enter your new credentials and re-authorize.
+  </Accordion>
+</AccordionGroup>

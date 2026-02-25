@@ -1,68 +1,121 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "CraftFlow",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#183059",
+    "light": "#6989B1",
+    "dark": "#0E1B35"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://craftflow.com"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@craftflow.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Sign In",
+      "href": "https://app.craftflow.co"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "claude",
+      "chatgpt"
+    ]
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Help Center",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "help/overview",
+              "help/quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Call Recording & Analysis",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "help/call-recording/overview",
+              "help/call-recording/mobile-recording",
+              "help/call-recording/reviewing-recordings"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Call Center AI",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "help/call-center-ai/overview",
+              "help/call-center-ai/scorecards",
+              "help/call-center-ai/coaching"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "AI Voice Agent",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "help/voice-agent/overview"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "help/integrations/overview",
+              "help/integrations/servicetitan",
+              "help/integrations/hubspot"
+            ]
+          },
+          {
+            "group": "Account & Settings",
+            "pages": [
+              "help/account/team-management",
+              "help/account/settings"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
             "pages": [
-              "api-reference/introduction"
+              "api/introduction",
+              "api/authentication"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Security",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "security/overview"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Data & Privacy",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "security/data-privacy"
+            ]
+          },
+          {
+            "group": "Compliance",
+            "pages": [
+              "security/compliance"
             ]
           }
         ]
@@ -71,52 +124,29 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Book a Demo",
+          "href": "https://craftflow.com",
+          "icon": "calendar"
         }
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
+  "footer": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "title": "Product",
+        "links": [
+          { "label": "App", "href": "https://app.craftflow.co" },
+          { "label": "Website", "href": "https://craftflow.com" }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          { "label": "Privacy Policy", "href": "https://craftflow.com/privacy" },
+          { "label": "Terms of Service", "href": "https://craftflow.com/terms" }
+        ]
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+    ]
   }
 }

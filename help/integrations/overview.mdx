@@ -1,0 +1,44 @@
+---
+title: "Integrations"
+description: "Connect CraftFlow to your existing software to sync customer data, jobs, and availability."
+---
+
+CraftFlow integrates with the tools your team already uses so you don't have to enter data twice. Integrations sync customer information, job history, and availability directly into CraftFlow.
+
+## Available integrations
+
+<CardGroup cols={2}>
+  <Card title="ServiceTitan" icon="wrench" href="/help/integrations/servicetitan">
+    Sync jobs, customers, technicians, and booking availability.
+  </Card>
+  <Card title="HubSpot" icon="hubspot" href="/help/integrations/hubspot">
+    Sync contacts and deals for sales follow-up and lead tracking.
+  </Card>
+  <Card title="Salesforce" icon="cloud">
+    Connect your Salesforce CRM for enterprise sales workflows.
+  </Card>
+  <Card title="RingCentral" icon="phone">
+    Pull call recordings directly from RingCentral into CraftFlow for scoring.
+  </Card>
+</CardGroup>
+
+## Setting up an integration
+
+Go to **Settings → Integrations** in the CraftFlow web app. Click the integration you want to set up and follow the on-screen steps. Most integrations use OAuth and are connected in under 5 minutes.
+
+<Note>
+  You'll need admin-level access in both CraftFlow and the platform you're connecting to complete the OAuth flow.
+</Note>
+
+## What syncs
+
+The exact data that syncs depends on the integration, but typically includes:
+
+- **Customers** — Name, address, contact info, service history
+- **Jobs** — Job type, status, assigned technician, scheduled time
+- **Technicians** — Names and availability for dispatching
+- **Business units** — For companies with multiple locations or divisions
+
+## Webhooks
+
+CraftFlow can also receive data from external systems via webhook. This is useful if your software isn't listed above but supports outbound webhooks. Contact [support@craftflow.com](mailto:support@craftflow.com) for setup help.

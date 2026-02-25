@@ -1,0 +1,65 @@
+---
+title: "API Introduction"
+description: "Overview of the CraftFlow REST API — base URL, versioning, and request format."
+---
+
+The CraftFlow API is a REST API that lets you read and write data in your CraftFlow account programmatically. You can use it to build custom integrations, sync data with internal tools, or automate workflows.
+
+<Note>
+  The CraftFlow API is currently in early access. Endpoints may change. Contact [support@craftflow.com](mailto:support@craftflow.com) if you're building an integration so we can flag any breaking changes before they happen.
+</Note>
+
+## Base URL
+
+```
+https://data.craftflow.co/api
+```
+
+All endpoints are relative to this base URL.
+
+## Request format
+
+- All requests must include the `Content-Type: application/json` header
+- All request bodies should be valid JSON
+- All responses are returned as JSON
+
+## Authentication
+
+All API requests require authentication via a JWT bearer token. See [Authentication](/api/authentication) for how to obtain and use tokens.
+
+## Rate limits
+
+| Plan | Requests per minute |
+|------|---------------------|
+| Standard | 60 |
+| Professional | 300 |
+
+If you exceed the rate limit, you'll receive a `429 Too Many Requests` response. Retry after the time specified in the `Retry-After` header.
+
+## Errors
+
+CraftFlow uses standard HTTP status codes:
+
+| Code | Meaning |
+|------|---------|
+| `200` | Success |
+| `201` | Created |
+| `400` | Bad request — check your request body |
+| `401` | Unauthorized — invalid or missing token |
+| `403` | Forbidden — your account doesn't have access to this resource |
+| `404` | Not found |
+| `429` | Rate limit exceeded |
+| `500` | Server error — contact support if this persists |
+
+Error responses include a JSON body:
+
+```json
+{
+  "error": "string describing the error",
+  "detail": "optional additional context"
+}
+```
+
+## SDKs
+
+We don't currently publish official SDKs. The API follows standard REST conventions and works with any HTTP client. If you're using Python, `requests` or `httpx` work well. For JavaScript/TypeScript, `fetch` or `axios` are both fine.

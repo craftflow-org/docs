@@ -1,0 +1,98 @@
+---
+title: "Authentication"
+description: "How to authenticate with the CraftFlow API using JWT tokens."
+---
+
+The CraftFlow API uses **JWT (JSON Web Token)** authentication. You obtain an access token by logging in with your credentials, then include the token in the `Authorization` header on every subsequent request.
+
+## Obtaining a token
+
+<Warning>
+  For server-to-server integrations, use an **API key** instead of user credentials. Go to **Settings → Integrations → API Keys** in the CraftFlow app to generate one. API keys don't expire and don't require the login flow below.
+</Warning>
+
+### POST /api/auth/login/
+
+```bash
+curl -X POST https://data.craftflow.co/api/auth/login/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "you@yourcompany.com",
+    "password": "your-password"
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+- `access` — Short-lived token (valid for 60 minutes). Include this in API requests.
+- `refresh` — Long-lived token (valid for 30 days). Use this to get a new access token without re-entering credentials.
+
+## Using the token
+
+Include the access token in the `Authorization` header on every API request:
+
+```bash
+curl https://data.craftflow.co/api/common/user/ \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+```
+
+## Refreshing the token
+
+When your access token expires, use the refresh token to get a new one:
+
+### POST /api/auth/token/refresh/
+
+```bash
+curl -X POST https://data.craftflow.co/api/auth/token/refresh/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+## Logging out
+
+Invalidate your refresh token when you're done:
+
+### POST /api/auth/logout/
+
+```bash
+curl -X POST https://data.craftflow.co/api/auth/logout/ \
+  -H "Authorization: Bearer <access-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }'
+```
+
+## API keys (recommended for integrations)
+
+For integrations and server-to-server use cases, generate an API key in the CraftFlow app instead of using credentials:
+
+1. Go to **Settings → Integrations → API Keys**
+2. Click **Generate API Key**
+3. Copy the key — it's only shown once
+
+Use it the same way as an access token:
+
+```bash
+curl https://data.craftflow.co/api/common/user/ \
+  -H "Authorization: Bearer <your-api-key>"
+```
+
+API keys don't expire but can be revoked at any time from the same settings page.
