@@ -135,14 +135,14 @@
     "links": [
       {
         "title": "Product",
-        "links": [
+        "items": [
           { "label": "App", "href": "https://app.craftflow.co" },
           { "label": "Website", "href": "https://craftflow.com" }
         ]
       },
       {
         "title": "Legal",
-        "links": [
+        "items": [
           { "label": "Privacy Policy", "href": "https://craftflow.com/privacy" },
           { "label": "Terms of Service", "href": "https://craftflow.com/terms" }
         ]
