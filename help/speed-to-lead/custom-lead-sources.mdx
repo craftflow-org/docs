@@ -1,0 +1,284 @@
+---
+title: "Custom Lead Sources"
+description: "Send leads from any source — website forms, CRMs, landing pages — directly into Craft using a webhook."
+---
+
+## Overview
+
+A Custom Webhook lets any external system send leads directly to Craft. Once a lead comes in, Craft creates a conversation and the AI messaging agent immediately reaches out via SMS — no manual steps required.
+
+Use this if your lead source isn't covered by a native integration. Common examples: a contact form on your website, a CRM, a landing page builder, or any tool that can make an HTTP request.
+
+<Tip>
+  The only required field is `phone_number`. Everything else is optional — send whatever your lead source has available.
+</Tip>
+
+---
+
+## Setup
+
+<Steps>
+  <Step title="Create a lead source in Craft">
+    Go to [**Call Center AI → Speed to Lead**](https://app.craftflow.co/call-center-ai/ai-csr/speed-to-lead) and click **Add** under Custom Lead Sources. Give it a descriptive name (e.g., "Website Contact Form", "WPForms", "Zapier").
+
+    Craft will generate a unique webhook URL for this source.
+  </Step>
+  <Step title="Copy your webhook URL">
+    Click on the lead source to open its detail page. Copy the webhook URL — it looks like this:
+
+    ```
+    https://data.craftflow.co/api/messaging-agent/webhook/{your-token}/
+    ```
+
+    Keep this URL private. Anyone with the URL can submit leads to your account.
+  </Step>
+  <Step title="Configure your external system">
+    Add the webhook URL to whatever system is generating your leads. See the integration guides below for step-by-step instructions for Zapier and common WordPress form plugins.
+  </Step>
+</Steps>
+
+---
+
+## Webhook Reference
+
+### Request
+
+**Method:** `POST`
+**Content-Type:** `application/json`
+
+```
+POST https://data.craftflow.co/api/messaging-agent/webhook/{your-token}/
+```
+
+### Parameters
+
+<ParamField body="phone_number" type="string" required>
+  The lead's phone number. This is the only required field — Craft uses it to initiate SMS outreach.
+
+  Accepts most common formats: `+15551234567`, `(555) 123-4567`, `555-123-4567`.
+</ParamField>
+
+<ParamField body="customer_name" type="string">
+  The lead's full name.
+</ParamField>
+
+<ParamField body="email" type="string">
+  The lead's email address.
+</ParamField>
+
+<ParamField body="address" type="string">
+  Street address.
+</ParamField>
+
+<ParamField body="city" type="string">
+  City.
+</ParamField>
+
+<ParamField body="state" type="string">
+  State code (e.g., `TX`, `CA`).
+</ParamField>
+
+<ParamField body="zip" type="string">
+  ZIP or postal code.
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Any additional context about the lead — their message, the service they're interested in, etc.
+</ParamField>
+
+<ParamField body="service_type" type="string">
+  The type of service the lead is requesting (e.g., `HVAC`, `Plumbing`, `Flooring`).
+</ParamField>
+
+<ParamField body="page_url" type="string">
+  The URL of the page the lead submitted from. Useful for tracking which landing pages are generating leads.
+</ParamField>
+
+<ParamField body="utm_source" type="string">
+  UTM source parameter (e.g., `google`, `facebook`).
+</ParamField>
+
+<ParamField body="utm_medium" type="string">
+  UTM medium parameter (e.g., `cpc`, `email`).
+</ParamField>
+
+<ParamField body="utm_campaign" type="string">
+  UTM campaign name.
+</ParamField>
+
+<ParamField body="custom_fields" type="object">
+  Any additional key-value pairs you want to attach to the lead. These are stored alongside the conversation and visible in Craft.
+
+  ```json
+  "custom_fields": {
+    "budget": "$500-1000",
+    "preferred_time": "morning"
+  }
+  ```
+</ParamField>
+
+### Responses
+
+| Status | Body | Meaning |
+|--------|------|---------|
+| `200` | `{"received": true}` | Lead received and queued for processing |
+| `400` | `{"error": "phone_number is required"}` | Request body is missing a phone number |
+| `404` | `{"error": "Not found"}` | Webhook token is invalid or the lead source has been deleted |
+
+<Note>
+  Craft returns `200` even if an internal error occurs during processing — this prevents your external system from retrying and sending duplicate leads. If a lead doesn't appear in Craft, contact support.
+</Note>
+
+### Deduplication
+
+If the same phone number submits a lead more than once within **15 minutes**, Craft will return the existing conversation instead of creating a duplicate.
+
+---
+
+## Integration Guides
+
+### Zapier
+
+Zapier lets you connect almost any lead source to Craft without writing code. Set up a Zap with your lead source as the trigger and Craft's webhook as the action.
+
+<Steps>
+  <Step title="Create a new Zap">
+    In Zapier, click **Create** → **Zap**. Choose whatever system your leads come from as the trigger (e.g., Facebook Lead Ads, Google Ads, Typeform, Jotform).
+  </Step>
+  <Step title="Add a Webhooks action">
+    For the action step, search for **Webhooks by Zapier** and select **Custom Request**.
+  </Step>
+  <Step title="Configure the request">
+    - **Method:** POST
+    - **URL:** Your Craft webhook URL
+    - **Data Pass-Through:** False
+    - **Data:** Map your trigger fields to Craft's field names
+
+    ```
+    phone_number  →  (phone field from your trigger)
+    customer_name →  (name field from your trigger)
+    email         →  (email field from your trigger)
+    ```
+  </Step>
+  <Step title="Test and activate">
+    Use Zapier's test step to send a sample lead and confirm it appears in Craft under **Speed to Lead**. Then turn the Zap on.
+  </Step>
+</Steps>
+
+---
+
+### WordPress
+
+<Tabs>
+  <Tab title="Gravity Forms">
+    The easiest way to connect Gravity Forms to Craft is with a small PHP snippet using the free **Code Snippets** plugin. This works on any Gravity Forms plan — no paid add-ons required.
+
+    <Steps>
+      <Step title="Install Code Snippets">
+        In WordPress, go to **Plugins → Add New**, search for **Code Snippets**, and install and activate it.
+      </Step>
+      <Step title="Create a new snippet">
+        Go to **Snippets → Add New**. Give it a name like "Send Gravity Forms leads to Craft".
+      </Step>
+      <Step title="Add the code">
+        Paste the following into the code editor. Replace the field IDs with the actual IDs from your Gravity Forms form (visible in the Form Editor by hovering over each field), and replace `YOUR_TOKEN` with your Craft webhook token.
+
+        ```php
+        add_action( 'gform_after_submission', function( $entry, $form ) {
+            $payload = array(
+                'phone_number'  => rgar( $entry, '3' ),  // replace with your phone field ID
+                'customer_name' => rgar( $entry, '1' ),  // replace with your name field ID
+                'email'         => rgar( $entry, '2' ),  // replace with your email field ID
+                'notes'         => rgar( $entry, '4' ),  // replace with your message field ID
+                'page_url'      => rgar( $entry, 'source_url' ),
+            );
+
+            wp_remote_post(
+                'https://data.craftflow.co/api/messaging-agent/webhook/YOUR_TOKEN/',
+                array(
+                    'headers' => array( 'Content-Type' => 'application/json' ),
+                    'body'    => wp_json_encode( $payload ),
+                )
+            );
+        }, 10, 2 );
+        ```
+
+        <Tip>
+          To find a field's ID in Gravity Forms, open your form in the editor and click on a field — the ID is shown in the right panel under **Field Settings**. It's just a number like `1`, `2`, `3`.
+        </Tip>
+      </Step>
+      <Step title="Activate and test">
+        Set the snippet to run everywhere and click **Save Changes & Activate**. Submit a test entry from your form and confirm the lead appears in Craft under **Speed to Lead**.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="WPForms">
+    WPForms supports webhooks natively on the **Pro plan and above** via the Webhooks addon.
+
+    <Steps>
+      <Step title="Enable the Webhooks addon">
+        In your WordPress dashboard, go to **WPForms → Addons**, find **Webhooks**, and click **Install Addon**. Activate it.
+      </Step>
+      <Step title="Open your form settings">
+        Go to **WPForms → All Forms**, hover over the form you want to connect, and click **Edit**. Navigate to **Settings → Webhooks**.
+      </Step>
+      <Step title="Add a new webhook">
+        Toggle webhooks on and click **Add New Webhook**. Configure:
+
+        - **Request URL:** Your Craft webhook URL
+        - **Request Method:** POST
+        - **Request Format:** JSON
+      </Step>
+      <Step title="Map your fields">
+        Under **Request Body**, add entries to map your form fields to Craft's field names:
+
+        | Name | Value |
+        |------|-------|
+        | `phone_number` | (your phone field) |
+        | `customer_name` | (your name field) |
+        | `email` | (your email field) |
+        | `notes` | (your message field, if any) |
+      </Step>
+      <Step title="Save and test">
+        Save the form. Submit a test entry and check that the lead appears in Craft under **Speed to Lead**.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Contact Form 7">
+    Contact Form 7 doesn't support webhooks natively. The easiest approach is to use the free **CF7 to Webhook** plugin.
+
+    <Steps>
+      <Step title="Install CF7 to Webhook">
+        In WordPress, go to **Plugins → Add New**, search for **CF7 to Webhook**, and install and activate it.
+      </Step>
+      <Step title="Open your form">
+        Go to **Contact → Contact Forms** and edit the form you want to connect.
+      </Step>
+      <Step title="Configure the webhook">
+        Navigate to the **Webhook** tab (added by the plugin). Enter:
+
+        - **Request URL:** Your Craft webhook URL
+        - **Request Method:** POST
+      </Step>
+      <Step title="Map your fields">
+        The plugin will send all form fields using their field tags as keys. Make sure your CF7 form uses these field names (or update them to match):
+
+        | CF7 field tag | Maps to |
+        |--------------|---------|
+        | `phone_number` | `phone_number` (required) |
+        | `your-name` | sent as-is — rename to `customer_name` in CF7 |
+        | `your-email` | sent as-is — rename to `email` in CF7 |
+        | `your-message` | sent as-is — rename to `notes` in CF7 |
+
+        <Tip>
+          To rename a field tag in CF7, click on the field in the form editor and change the **Name** value. Use the exact field names above to match Craft's expected format.
+        </Tip>
+      </Step>
+      <Step title="Save and test">
+        Save the form. Submit a test entry and check that the lead appears in Craft under **Speed to Lead**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>

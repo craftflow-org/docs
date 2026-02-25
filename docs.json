@@ -42,46 +42,44 @@
           {
             "group": "Getting Started",
             "pages": [
-              "help/overview",
-              "help/quickstart"
+              "help/overview"
             ]
           },
           {
             "group": "Call Recording & Analysis",
             "pages": [
-              "help/call-recording/overview",
-              "help/call-recording/auto-start",
-              "help/call-recording/mobile-recording",
-              "help/call-recording/reviewing-recordings"
+              "help/call-recording/auto-start"
+            ]
+          },
+          {
+            "group": "Speed to Lead",
+            "pages": [
+              "help/speed-to-lead/overview",
+              "help/speed-to-lead/custom-lead-sources"
             ]
           },
           {
             "group": "Call Center AI",
             "pages": [
-              "help/call-center-ai/overview",
-              "help/call-center-ai/scorecards",
-              "help/call-center-ai/coaching"
+              "help/call-center-ai/coming-soon"
             ]
           },
           {
             "group": "AI Voice Agent",
             "pages": [
-              "help/voice-agent/overview"
+              "help/voice-agent/coming-soon"
             ]
           },
           {
             "group": "Integrations",
             "pages": [
-              "help/integrations/overview",
-              "help/integrations/servicetitan",
-              "help/integrations/hubspot"
+              "help/integrations/coming-soon"
             ]
           },
           {
             "group": "Account & Settings",
             "pages": [
-              "help/account/team-management",
-              "help/account/settings"
+              "help/account/coming-soon"
             ]
           }
         ]
@@ -92,8 +90,7 @@
           {
             "group": "Overview",
             "pages": [
-              "api/introduction",
-              "api/authentication"
+              "api/coming-soon"
             ]
           }
         ]
@@ -104,19 +101,7 @@
           {
             "group": "Overview",
             "pages": [
-              "security/overview"
-            ]
-          },
-          {
-            "group": "Data & Privacy",
-            "pages": [
-              "security/data-privacy"
-            ]
-          },
-          {
-            "group": "Compliance",
-            "pages": [
-              "security/compliance"
+              "security/coming-soon"
             ]
           }
         ]
