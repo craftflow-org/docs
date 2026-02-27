@@ -55,6 +55,7 @@
             "group": "Speed to Lead",
             "pages": [
               "help/speed-to-lead/overview",
+              "help/speed-to-lead/google-lsa",
               "help/speed-to-lead/custom-lead-sources"
             ]
           },
