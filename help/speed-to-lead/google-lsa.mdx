@@ -5,27 +5,9 @@ description: "Automatically respond to Google LSA messaging leads with Craft's A
 
 ## Overview
 
-When a customer messages your business through a Google Local Services Ad, Craft detects the new lead and has your AI messaging agent respond — typically within 60 seconds. The entire conversation stays within Google's messaging platform, so the customer never has to leave.
+When a customer messages your business through a Google Local Services Ad, Craft picks up the lead and has your AI messaging agent respond — typically within a couple of minutes. The conversation happens entirely within Google's messaging platform.
 
-This integration works with **message-type leads only** (not phone call leads). When a customer taps "Message" on your LSA listing, Google creates a messaging lead. Craft picks it up, and your AI agent handles the conversation — answering questions, collecting information, and booking appointments — just like it does on SMS, Messenger, and other channels.
-
-<Tip>
-  Google LSA messaging leads are high-intent. They've already searched for your service and chosen to reach out. Fast response times dramatically increase conversion rates.
-</Tip>
-
----
-
-## Prerequisites
-
-Before connecting Google LSA, make sure you have:
-
-1. **An active Google Local Services Ads account** with message leads enabled
-2. **A Google Ads manager account** that has access to the LSA account (you'll sign in with this during setup)
-3. **An AI messaging agent configured in Craft** — go to [Call Center AI → Speed to Lead](https://app.craftflow.co/call-center-ai/ai-csr/speed-to-lead) and make sure your agent is set up and active
-
-<Note>
-  The Google account you sign in with must have admin or standard access to the Google Ads manager account that manages your LSA accounts. If you're unsure which account to use, check with whoever manages your Google Ads.
-</Note>
+This works with **message-type leads** (not phone calls). Your AI agent handles the conversation just like it does on SMS, Messenger, and other channels.
 
 ---
 
@@ -36,65 +18,11 @@ Before connecting Google LSA, make sure you have:
     Go to [**Call Center AI → Speed to Lead → Google LSA**](https://app.craftflow.co/call-center-ai/ai-csr/speed-to-lead/google-lsa) and click **Connect Google Account**.
   </Step>
   <Step title="Sign in with Google">
-    A Google sign-in window will appear. Sign in with the Google account that has access to your Google Ads manager account.
-
-    You'll be asked to grant Craft permission to manage your Local Services Ads conversations. This is required for the AI agent to read incoming messages and send replies.
+    Sign in with the Google account that has access to your Google Ads manager account. Grant Craft permission to manage your Local Services Ads conversations.
   </Step>
   <Step title="Select your LSA accounts">
-    After signing in, Craft will show all the Google LSA accounts accessible under your manager account. Select the accounts you want the AI agent to handle.
-
-    Each account corresponds to a business location in your Google LSA setup.
-  </Step>
-  <Step title="You're done">
-    Craft will start monitoring your selected accounts for new messaging leads. When a customer sends a message through your LSA listing, the AI agent will respond automatically.
-
-    New conversations will appear under [**Call Center AI → Tasks**](https://app.craftflow.co/call-center-ai/tasks) with the Google LSA channel icon.
+    Choose which LSA accounts you want the AI agent to handle. Each account corresponds to a business location.
   </Step>
 </Steps>
 
----
-
-## How It Works
-
-Once connected, here's what happens when a customer messages your LSA listing:
-
-1. **Lead detected** — Craft polls your Google LSA accounts and detects the new messaging lead
-2. **Conversation created** — A conversation is created in Craft and a task appears in your Call Center AI task list
-3. **Customer message received** — The customer's initial message is picked up and routed to your AI agent
-4. **AI responds** — Your AI agent reads the message and responds directly through Google's messaging platform
-5. **Conversation continues** — The customer and AI agent go back and forth within Google's messaging interface. The AI can answer questions, collect contact information, and book appointments
-
-<Tip>
-  If the AI agent needs help or the customer requests a human, the conversation is escalated to your team. A human agent can take over and continue the conversation directly from Craft.
-</Tip>
-
----
-
-## Response Times
-
-Craft polls your Google LSA accounts at different frequencies depending on activity:
-
-| Account activity | Polling frequency |
-|-----------------|-------------------|
-| Active conversation in last 30 minutes | Every 60 seconds |
-| Active conversation in last 3 hours | Every 90 seconds |
-| No recent activity | Every 5 minutes |
-
-This means new leads are typically detected and responded to within **1–2 minutes** during active periods.
-
----
-
-## Managing Conversations
-
-Google LSA conversations work the same as any other channel in Craft:
-
-- **View conversations** in [Call Center AI → Tasks](https://app.craftflow.co/call-center-ai/tasks) — filter by the "Google LSA" channel to see only LSA conversations
-- **Take over from AI** — click "Take Over Conversation" on any task to respond manually
-- **Follow-ups** — the AI agent will automatically follow up with unresponsive leads based on your configured follow-up schedule
-- **Escalations** — if the AI needs human help, the conversation is escalated and your team is notified
-
----
-
-## Disconnecting
-
-To stop the AI agent from responding to Google LSA leads, go to [**Call Center AI → Speed to Lead → Google LSA**](https://app.craftflow.co/call-center-ai/ai-csr/speed-to-lead/google-lsa) and deactivate the accounts you no longer want monitored. You can reactivate them at any time.
+New conversations will appear under [**Call Center AI → Tasks**](https://app.craftflow.co/call-center-ai/tasks) with the Google LSA channel icon. You can filter by channel to see only LSA conversations.
