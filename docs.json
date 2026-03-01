@@ -99,29 +99,29 @@
           {
             "group": "Users",
             "pages": [
-              "api/users/list",
-              "api/users/get"
+              "GET /users/",
+              "GET /users/{id}/"
             ]
           },
           {
             "group": "Teams",
             "pages": [
-              "api/teams/list",
-              "api/teams/get"
+              "GET /teams/",
+              "GET /teams/{id}/"
             ]
           },
           {
             "group": "Field Recordings",
             "pages": [
-              "api/recordings/list",
-              "api/recordings/get"
+              "GET /recordings/",
+              "GET /recordings/{id}/"
             ]
           },
           {
             "group": "Calls",
             "pages": [
-              "api/calls/list",
-              "api/calls/get"
+              "GET /calls/",
+              "GET /calls/{id}/"
             ]
           }
         ]
