@@ -98,29 +98,29 @@
           {
             "group": "Users",
             "pages": [
-              "openapi.json GET /users/",
-              "openapi.json GET /users/{id}/"
+              "api/endpoints/list-users",
+              "api/endpoints/get-user"
             ]
           },
           {
             "group": "Teams",
             "pages": [
-              "openapi.json GET /teams/",
-              "openapi.json GET /teams/{id}/"
+              "api/endpoints/list-teams",
+              "api/endpoints/get-team"
             ]
           },
           {
             "group": "Field Recordings",
             "pages": [
-              "openapi.json GET /recordings/",
-              "openapi.json GET /recordings/{id}/"
+              "api/endpoints/list-recordings",
+              "api/endpoints/get-recording"
             ]
           },
           {
             "group": "Calls",
             "pages": [
-              "openapi.json GET /calls/",
-              "openapi.json GET /calls/{id}/"
+              "api/endpoints/list-calls",
+              "api/endpoints/get-call"
             ]
           }
         ]
