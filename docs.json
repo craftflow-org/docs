@@ -87,7 +87,6 @@
       },
       {
         "tab": "API Reference",
-        "openapi": "openapi.json",
         "groups": [
           {
             "group": "Overview",
@@ -99,29 +98,29 @@
           {
             "group": "Users",
             "pages": [
-              "GET /users/",
-              "GET /users/{id}/"
+              "openapi.json GET /users/",
+              "openapi.json GET /users/{id}/"
             ]
           },
           {
             "group": "Teams",
             "pages": [
-              "GET /teams/",
-              "GET /teams/{id}/"
+              "openapi.json GET /teams/",
+              "openapi.json GET /teams/{id}/"
             ]
           },
           {
             "group": "Field Recordings",
             "pages": [
-              "GET /recordings/",
-              "GET /recordings/{id}/"
+              "openapi.json GET /recordings/",
+              "openapi.json GET /recordings/{id}/"
             ]
           },
           {
             "group": "Calls",
             "pages": [
-              "GET /calls/",
-              "GET /calls/{id}/"
+              "openapi.json GET /calls/",
+              "openapi.json GET /calls/{id}/"
             ]
           }
         ]
