@@ -91,7 +91,36 @@
           {
             "group": "Overview",
             "pages": [
-              "api/coming-soon"
+              "api/introduction",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Users",
+            "pages": [
+              "api/users/list",
+              "api/users/get"
+            ]
+          },
+          {
+            "group": "Teams",
+            "pages": [
+              "api/teams/list",
+              "api/teams/get"
+            ]
+          },
+          {
+            "group": "Field Recordings",
+            "pages": [
+              "api/recordings/list",
+              "api/recordings/get"
+            ]
+          },
+          {
+            "group": "Calls",
+            "pages": [
+              "api/calls/list",
+              "api/calls/get"
             ]
           }
         ]

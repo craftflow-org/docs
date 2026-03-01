@@ -1,8 +1,83 @@
 ---
-title: "API Introduction"
-description: "Overview of the Craft REST API."
+title: "API Overview"
+---
+The Craft API lets gives you Programmatic access to our AI powered coaching, scheduling, and messaging platform for home services and home improvement businesses.
+
+The API enables developers to build custom integrations with their own internal tools or third party platforms.
+
 ---
 
-<Note>
-  This page is coming soon.
-</Note>
+## Base URL
+
+All API requests should be made to:
+
+```
+https://data.craftflow.co/api/v1/
+```
+
+---
+
+## Response Format
+
+All responses are wrapped in a consistent envelope.
+
+### Success (list)
+
+```json
+{
+  "data": [
+    { "id": "...", "email": "..." },
+    { "id": "...", "email": "..." }
+  ],
+  "pagination": {
+    "count": 42,
+    "page": 1,
+    "page_size": 25,
+    "total_pages": 2
+  }
+}
+```
+
+### Success (single object)
+
+```json
+{
+  "data": {
+    "id": "...",
+    "email": "..."
+  }
+}
+```
+
+### Error
+
+```json
+{
+  "error": {
+    "detail": "Invalid API key."
+  }
+}
+```
+
+---
+
+## Pagination
+
+List endpoints return paginated results. Use these query parameters to control pagination:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `page` | integer | `1` | The page number to return. |
+| `page_size` | integer | `25` | Number of results per page. Maximum: `100`. |
+
+---
+
+## Rate Limits
+
+API requests are limited to **1,000 requests per hour** per API key. If you exceed this limit, you'll receive a `429 Too Many Requests` response.
+
+---
+
+## Versioning
+
+The API is versioned via the URL path (e.g., `/api/v1/`). When breaking changes are introduced, a new version will be released. Existing versions will continue to work.

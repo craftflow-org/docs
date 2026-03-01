@@ -1,8 +1,55 @@
 ---
 title: "Authentication"
-description: "How to authenticate with the Craft API."
+description: "How to authenticate with the Craft API using API keys."
 ---
 
+## API Keys
+
+All API requests require authentication via an API key. Include your key in the `Authorization` header as a Bearer token:
+
+```bash
+curl https://data.craftflow.co/api/v1/users/ \
+  -H "Authorization: Bearer cf_live_your_api_key_here"
+```
+
+---
+
+## Getting Your API Key
+
+Contact your Craft account manager to generate an API key for your company. The key is shown **once** at creation time — store it securely.
+
+API keys are scoped to your company. All requests made with a key will only return data belonging to your company.
+
 <Note>
-  This page is coming soon.
+  API keys are prefixed with `cf_live_` so they're easy to identify. Never commit them to source control or share them publicly.
 </Note>
+
+---
+
+## Error Responses
+
+| Status Code | Description |
+|-------------|-------------|
+| `401 Unauthorized` | Missing or invalid API key. |
+| `403 Forbidden` | The API key doesn't have permission for this action. |
+| `429 Too Many Requests` | Rate limit exceeded. Wait and retry. |
+
+### Example: Invalid API key
+
+```json
+{
+  "error": {
+    "detail": "Invalid API key."
+  }
+}
+```
+
+### Example: Expired API key
+
+```json
+{
+  "error": {
+    "detail": "API key has expired."
+  }
+}
+```
