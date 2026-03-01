@@ -87,6 +87,7 @@
       },
       {
         "tab": "API Reference",
+        "openapi": "api/openapi.json",
         "groups": [
           {
             "group": "Overview",
