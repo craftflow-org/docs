@@ -113,14 +113,16 @@
             "group": "Field Recordings",
             "pages": [
               "api/endpoints/list-recordings",
-              "api/endpoints/get-recording"
+              "api/endpoints/get-recording",
+              "api/endpoints/get-recording-transcript"
             ]
           },
           {
             "group": "Calls",
             "pages": [
               "api/endpoints/list-calls",
-              "api/endpoints/get-call"
+              "api/endpoints/get-call",
+              "api/endpoints/get-call-transcript"
             ]
           }
         ]
