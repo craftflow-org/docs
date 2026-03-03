@@ -406,39 +406,6 @@
                       "end_time": "2025-07-01T09:45:00Z",
                       "audio_duration_seconds": 2700,
                       "score": 0.85,
-                      "transcript": [
-                        {
-                          "speaker": "A",
-                          "text": "So let me walk you through what we found with the unit.",
-                          "start": 1200,
-                          "end": 4800,
-                          "words": [
-                            {"text": "So", "start": 1200, "end": 1400, "speaker": "A"},
-                            {"text": "let", "start": 1450, "end": 1600, "speaker": "A"},
-                            {"text": "me", "start": 1650, "end": 1800, "speaker": "A"},
-                            {"text": "walk", "start": 1850, "end": 2100, "speaker": "A"},
-                            {"text": "you", "start": 2150, "end": 2300, "speaker": "A"},
-                            {"text": "through", "start": 2350, "end": 2600, "speaker": "A"},
-                            {"text": "what", "start": 2650, "end": 2850, "speaker": "A"},
-                            {"text": "we", "start": 2900, "end": 3050, "speaker": "A"},
-                            {"text": "found", "start": 3100, "end": 3400, "speaker": "A"},
-                            {"text": "with", "start": 3450, "end": 3650, "speaker": "A"},
-                            {"text": "the", "start": 3700, "end": 3850, "speaker": "A"},
-                            {"text": "unit.", "start": 3900, "end": 4800, "speaker": "A"}
-                          ]
-                        },
-                        {
-                          "speaker": "B",
-                          "text": "Okay, sounds good.",
-                          "start": 5200,
-                          "end": 6500,
-                          "words": [
-                            {"text": "Okay,", "start": 5200, "end": 5600, "speaker": "B"},
-                            {"text": "sounds", "start": 5700, "end": 6000, "speaker": "B"},
-                            {"text": "good.", "start": 6050, "end": 6500, "speaker": "B"}
-                          ]
-                        }
-                      ],
                       "user": {
                         "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
                         "full_name": "John Doe"
@@ -519,39 +486,6 @@
                     "end_time": "2025-07-01T09:45:00Z",
                     "audio_duration_seconds": 2700,
                     "score": 0.85,
-                    "transcript": [
-                      {
-                        "speaker": "A",
-                        "text": "So let me walk you through what we found with the unit.",
-                        "start": 1200,
-                        "end": 4800,
-                        "words": [
-                          {"text": "So", "start": 1200, "end": 1400, "speaker": "A"},
-                          {"text": "let", "start": 1450, "end": 1600, "speaker": "A"},
-                          {"text": "me", "start": 1650, "end": 1800, "speaker": "A"},
-                          {"text": "walk", "start": 1850, "end": 2100, "speaker": "A"},
-                          {"text": "you", "start": 2150, "end": 2300, "speaker": "A"},
-                          {"text": "through", "start": 2350, "end": 2600, "speaker": "A"},
-                          {"text": "what", "start": 2650, "end": 2850, "speaker": "A"},
-                          {"text": "we", "start": 2900, "end": 3050, "speaker": "A"},
-                          {"text": "found", "start": 3100, "end": 3400, "speaker": "A"},
-                          {"text": "with", "start": 3450, "end": 3650, "speaker": "A"},
-                          {"text": "the", "start": 3700, "end": 3850, "speaker": "A"},
-                          {"text": "unit.", "start": 3900, "end": 4800, "speaker": "A"}
-                        ]
-                      },
-                      {
-                        "speaker": "B",
-                        "text": "Okay, sounds good.",
-                        "start": 5200,
-                        "end": 6500,
-                        "words": [
-                          {"text": "Okay,", "start": 5200, "end": 5600, "speaker": "B"},
-                          {"text": "sounds", "start": 5700, "end": 6000, "speaker": "B"},
-                          {"text": "good.", "start": 6050, "end": 6500, "speaker": "B"}
-                        ]
-                      }
-                    ],
                     "user": {
                       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
                       "full_name": "John Doe"
@@ -674,20 +608,6 @@
                       "sentiment": "positive",
                       "score": 0.9,
                       "summary": "Customer called about HVAC repair.",
-                      "transcript": [
-                        {
-                          "speaker": "CSR",
-                          "text": "Thank you for calling, how can I help you today?",
-                          "start": 0,
-                          "end": 2800
-                        },
-                        {
-                          "speaker": "Customer",
-                          "text": "Hi, my AC stopped working and it's really hot in here.",
-                          "start": 3200,
-                          "end": 6500
-                        }
-                      ],
                       "is_qualified": true,
                       "is_booked": true,
                       "is_excused": false,
@@ -778,20 +698,6 @@
                     "sentiment": "positive",
                     "score": 0.9,
                     "summary": "Customer called about HVAC repair.",
-                    "transcript": [
-                      {
-                        "speaker": "CSR",
-                        "text": "Thank you for calling, how can I help you today?",
-                        "start": 0,
-                        "end": 2800
-                      },
-                      {
-                        "speaker": "Customer",
-                        "text": "Hi, my AC stopped working and it's really hot in here.",
-                        "start": 3200,
-                        "end": 6500
-                      }
-                    ],
                     "is_qualified": true,
                     "is_booked": true,
                     "is_excused": false,
@@ -830,6 +736,209 @@
                   "error": {
                     "detail": "Not found."
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recordings/{id}/transcript/": {
+      "get": {
+        "operationId": "getRecordingTranscript",
+        "summary": "Get Field Recording Transcript",
+        "description": "Retrieve the full transcript for a field recording.",
+        "tags": ["Field Recordings"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the field recording.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The transcript for the field recording.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FieldRecordingTranscript"
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "id": "e5f6a7b8-c9d0-1234-efab-567890123456",
+                    "transcript": [
+                      {
+                        "speaker": "A",
+                        "text": "So let me walk you through what we found with the unit.",
+                        "start": 1200,
+                        "end": 4800,
+                        "words": [
+                          {"text": "So", "start": 1200, "end": 1400, "speaker": "A"},
+                          {"text": "let", "start": 1450, "end": 1600, "speaker": "A"},
+                          {"text": "me", "start": 1650, "end": 1800, "speaker": "A"},
+                          {"text": "walk", "start": 1850, "end": 2100, "speaker": "A"},
+                          {"text": "you", "start": 2150, "end": 2300, "speaker": "A"},
+                          {"text": "through", "start": 2350, "end": 2600, "speaker": "A"},
+                          {"text": "what", "start": 2650, "end": 2850, "speaker": "A"},
+                          {"text": "we", "start": 2900, "end": 3050, "speaker": "A"},
+                          {"text": "found", "start": 3100, "end": 3400, "speaker": "A"},
+                          {"text": "with", "start": 3450, "end": 3650, "speaker": "A"},
+                          {"text": "the", "start": 3700, "end": 3850, "speaker": "A"},
+                          {"text": "unit.", "start": 3900, "end": 4800, "speaker": "A"}
+                        ]
+                      },
+                      {
+                        "speaker": "B",
+                        "text": "Okay, sounds good.",
+                        "start": 5200,
+                        "end": 6500,
+                        "words": [
+                          {"text": "Okay,", "start": 5200, "end": 5600, "speaker": "B"},
+                          {"text": "sounds", "start": 5700, "end": 6000, "speaker": "B"},
+                          {"text": "good.", "start": 6050, "end": 6500, "speaker": "B"}
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Field recording not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "detail": "Not found."
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/calls/{id}/transcript/": {
+      "get": {
+        "operationId": "getCallTranscript",
+        "summary": "Get Call Transcript",
+        "description": "Retrieve the full transcript for a call.",
+        "tags": ["Calls"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the call.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The transcript for the call.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/CallTranscript"
+                    }
+                  },
+                  "required": ["data"]
+                },
+                "example": {
+                  "data": {
+                    "id": "f6a7b8c9-d0e1-2345-fabc-678901234567",
+                    "transcript": [
+                      {
+                        "speaker": "CSR",
+                        "text": "Thank you for calling, how can I help you today?",
+                        "start": 0,
+                        "end": 2800
+                      },
+                      {
+                        "speaker": "Customer",
+                        "text": "Hi, my AC stopped working and it's really hot in here.",
+                        "start": 3200,
+                        "end": 6500
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Call not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "detail": "Not found."
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1119,13 +1228,6 @@
             "type": "number",
             "description": "Overall score for the field recording (0.0 - 1.0)."
           },
-          "transcript": {
-            "type": "array",
-            "description": "List of transcript utterances with speaker labels and timing.",
-            "items": {
-              "$ref": "#/components/schemas/FieldRecordingUtterance"
-            }
-          },
           "user": {
             "oneOf": [
               { "$ref": "#/components/schemas/NestedUser" },
@@ -1139,7 +1241,7 @@
             "description": "When the field recording was created (ISO 8601)."
           }
         },
-        "required": ["id", "name", "start_time", "end_time", "audio_duration_seconds", "score", "transcript", "user", "created_at"]
+        "required": ["id", "name", "start_time", "end_time", "audio_duration_seconds", "score", "user", "created_at"]
       },
       "Call": {
         "type": "object",
@@ -1186,13 +1288,6 @@
             "type": "string",
             "description": "AI-generated summary of the call."
           },
-          "transcript": {
-            "type": "array",
-            "description": "List of transcript utterances with speaker labels and timing.",
-            "items": {
-              "$ref": "#/components/schemas/CallUtterance"
-            }
-          },
           "is_qualified": {
             "type": "boolean",
             "description": "Whether the call was qualified as a lead."
@@ -1235,7 +1330,43 @@
             "description": "When the call record was created (ISO 8601)."
           }
         },
-        "required": ["id", "start_time", "end_time", "audio_duration_seconds", "direction", "source", "sentiment", "score", "summary", "transcript", "is_qualified", "is_booked", "is_excused", "excused_at", "excuse_reason", "is_cancellation", "has_cancellation", "user", "created_at"]
+        "required": ["id", "start_time", "end_time", "audio_duration_seconds", "direction", "source", "sentiment", "score", "summary", "is_qualified", "is_booked", "is_excused", "excused_at", "excuse_reason", "is_cancellation", "has_cancellation", "user", "created_at"]
+      },
+      "FieldRecordingTranscript": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the field recording."
+          },
+          "transcript": {
+            "type": "array",
+            "description": "List of transcript utterances with speaker labels and timing.",
+            "items": {
+              "$ref": "#/components/schemas/FieldRecordingUtterance"
+            }
+          }
+        },
+        "required": ["id", "transcript"]
+      },
+      "CallTranscript": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the call."
+          },
+          "transcript": {
+            "type": "array",
+            "description": "List of transcript utterances with speaker labels and timing.",
+            "items": {
+              "$ref": "#/components/schemas/CallUtterance"
+            }
+          }
+        },
+        "required": ["id", "transcript"]
       },
       "Pagination": {
         "type": "object",
