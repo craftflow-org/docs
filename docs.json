@@ -99,31 +99,31 @@
           {
             "group": "Users",
             "pages": [
-              "api/endpoints/list-users",
-              "api/endpoints/get-user"
+              "api/openapi.json GET /users/",
+              "api/openapi.json GET /users/{id}/"
             ]
           },
           {
             "group": "Teams",
             "pages": [
-              "api/endpoints/list-teams",
-              "api/endpoints/get-team"
+              "api/openapi.json GET /teams/",
+              "api/openapi.json GET /teams/{id}/"
             ]
           },
           {
             "group": "Field Recordings",
             "pages": [
-              "api/endpoints/list-recordings",
-              "api/endpoints/get-recording",
-              "api/endpoints/get-recording-transcript"
+              "api/openapi.json GET /recordings/",
+              "api/openapi.json GET /recordings/{id}/",
+              "api/openapi.json GET /recordings/{id}/transcript/"
             ]
           },
           {
             "group": "Calls",
             "pages": [
-              "api/endpoints/list-calls",
-              "api/endpoints/get-call",
-              "api/endpoints/get-call-transcript"
+              "api/openapi.json GET /calls/",
+              "api/openapi.json GET /calls/{id}/",
+              "api/openapi.json GET /calls/{id}/transcript/"
             ]
           }
         ]
