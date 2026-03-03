@@ -1,5 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "openapi": "api/openapi.json",
   "theme": "mint",
   "name": "Craft",
   "colors": {
@@ -87,7 +88,6 @@
       },
       {
         "tab": "API Reference",
-        "openapi": "api/openapi.json",
         "groups": [
           {
             "group": "Overview",
