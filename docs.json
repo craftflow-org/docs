@@ -99,31 +99,31 @@
           {
             "group": "Users",
             "pages": [
-              "GET /users/",
-              "GET /users/{id}/"
+              "api/endpoints/list-users",
+              "api/endpoints/get-user"
             ]
           },
           {
             "group": "Teams",
             "pages": [
-              "GET /teams/",
-              "GET /teams/{id}/"
+              "api/endpoints/list-teams",
+              "api/endpoints/get-team"
             ]
           },
           {
             "group": "Field Recordings",
             "pages": [
-              "GET /recordings/",
-              "GET /recordings/{id}/",
-              "GET /recordings/{id}/transcript/"
+              "api/endpoints/list-recordings",
+              "api/endpoints/get-recording",
+              "api/endpoints/get-recording-transcript"
             ]
           },
           {
             "group": "Calls",
             "pages": [
-              "GET /calls/",
-              "GET /calls/{id}/",
-              "GET /calls/{id}/transcript/"
+              "api/endpoints/list-calls",
+              "api/endpoints/get-call",
+              "api/endpoints/get-call-transcript"
             ]
           }
         ]
