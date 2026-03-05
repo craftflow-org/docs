@@ -53,7 +53,10 @@
             "group": "AI Ridealong",
             "pages": [
               "help/call-recording/auto-start",
-              "help/getting-started/scorecard-weights"
+              "help/getting-started/scorecard-weights",
+              "help/ai-ridealong/scorecard-best-practices",
+              "help/ai-ridealong/review-workflow",
+              "help/ai-ridealong/driving-adoption"
             ]
           },
           {
