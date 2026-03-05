@@ -68,6 +68,7 @@
             "group": "Contact Center AI",
             "pages": [
               "help/call-center-ai/overview",
+              "help/call-center-ai/agent-coach-qa",
               "help/speed-to-lead/overview",
               "help/speed-to-lead/google-lsa",
               "help/speed-to-lead/custom-lead-sources",
