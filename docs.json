@@ -50,29 +50,19 @@
             ]
           },
           {
-            "group": "Call Recording & Analysis",
+            "group": "AI Ridealong",
             "pages": [
               "help/call-recording/auto-start",
               "help/getting-started/scorecard-weights"
             ]
           },
           {
-            "group": "Speed to Lead",
+            "group": "Contact Center AI",
             "pages": [
+              "help/call-center-ai/coming-soon",
               "help/speed-to-lead/overview",
               "help/speed-to-lead/google-lsa",
-              "help/speed-to-lead/custom-lead-sources"
-            ]
-          },
-          {
-            "group": "Call Center AI",
-            "pages": [
-              "help/call-center-ai/coming-soon"
-            ]
-          },
-          {
-            "group": "AI Voice Agent",
-            "pages": [
+              "help/speed-to-lead/custom-lead-sources",
               "help/voice-agent/coming-soon"
             ]
           },
