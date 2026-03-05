@@ -53,6 +53,7 @@
             "group": "AI Ridealong",
             "pages": [
               "help/call-recording/auto-start",
+              "help/ai-ridealong/edit-job-mapping",
               {
                 "group": "Coach",
                 "pages": [
