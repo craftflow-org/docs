@@ -69,9 +69,14 @@
             "pages": [
               "help/call-center-ai/overview",
               "help/call-center-ai/agent-coach-qa",
-              "help/speed-to-lead/overview",
-              "help/speed-to-lead/google-lsa",
-              "help/speed-to-lead/custom-lead-sources",
+              {
+                "group": "Speed to Lead",
+                "pages": [
+                  "help/speed-to-lead/overview",
+                  "help/speed-to-lead/google-lsa",
+                  "help/speed-to-lead/custom-lead-sources"
+                ]
+              },
               "help/voice-agent/overview"
             ]
           },
