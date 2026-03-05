@@ -1,0 +1,53 @@
+---
+title: "Scorecard Weights"
+description: "How scorecard weights affect your overall score and how to use them effectively."
+---
+
+Each item on your scorecard gets scored 0-5 by the AI. Every item also has a **weight** (defaulting to 1) that controls how much it affects the overall score.
+
+## How the Math Works
+
+The system multiplies each item's score by its weight, adds those up, then divides by the maximum possible (5 x each weight, added up). That gives you a number between 0 and 1.
+
+**Example — Equal weights:**
+
+Two items, both weighted at 1. One scores a 5, the other scores a 3:
+
+```
+(5 + 3) / (5 + 5) = 0.80
+```
+
+**Example — Weighted for importance:**
+
+Same scores, but the second item's weight is bumped to 3 because it matters more:
+
+```
+(1×5 + 3×3) / (1×5 + 3×5) = (5 + 9) / (5 + 15) = 0.70
+```
+
+The lower-scoring item now drags the average down more because it carries more weight.
+
+## Special Cases
+
+### Not Applicable (N/A)
+
+Items marked **N/A** are thrown out entirely — they don't count for or against the score. If an item doesn't apply to a particular conversation, it's excluded from the calculation.
+
+### Zero-Weight Items
+
+Setting an item's weight to **0** lets you track something without it affecting the final score. The AI still scores the item, and you can still see it in reviews — it just doesn't move the number.
+
+This is useful for:
+- Tracking behaviors you're curious about but not ready to enforce
+- Piloting new scorecard items before making them count
+- Monitoring soft skills without penalizing reps
+
+## When to Adjust Weights
+
+- **Revenue-driving steps** (options presentation, closing, objection handling) — consider weight 2-3
+- **Hygiene steps** (greeting, intro) — keep at weight 1
+- **Experimental steps** — set to weight 0 until you're confident in the criteria
+
+<Tip>
+Use weights conservatively. Start with everything at 1, then adjust after you've seen a few weeks of data and know which steps actually correlate with revenue.
+</Tip>
