@@ -1,0 +1,54 @@
+---
+title: "Coach"
+description: "Scorecards, scoring, and coaching tools for AI Ridealong."
+---
+
+Coach is the management layer of AI Ridealong. It's where you build the scorecards that define your sales process, configure how scoring works, and review your team's performance.
+
+## Scorecards
+
+Your scorecard defines what a great appointment looks like. The AI scores every recording against it.
+
+<CardGroup cols={2}>
+  <Card title="Scorecard Best Practices" icon="clipboard-check" href="/help/ai-ridealong/scorecard-best-practices">
+    The 5 rules for building scorecards that drive accurate scoring and meaningful coaching.
+  </Card>
+  <Card title="Scorecard Weights" icon="weight-scale" href="/help/getting-started/scorecard-weights">
+    How weights affect overall score calculation, N/A handling, and zero-weight tracking items.
+  </Card>
+</CardGroup>
+
+## How Scoring Works
+
+Each scorecard item is scored 0-5 by the AI based on what was said during the conversation:
+
+| Score | Meaning |
+|-------|---------|
+| 5 | Fully executed |
+| 4 | Mostly there |
+| 3 | Adequate |
+| 2 | Partial |
+| 1 | Barely addressed |
+| 0 | Not addressed |
+| N/A | Didn't apply |
+
+Scores are weighted — high-impact steps like options presentation and objection handling can carry more weight than lower-impact steps. Items marked N/A are excluded entirely. See [Scorecard Weights](/help/getting-started/scorecard-weights) for the math.
+
+## The Heatmap
+
+The heatmap is your coaching command center. It shows average scores by step and by rep in a single view.
+
+- **Red cells** = low scores (coaching needed)
+- **Green cells** = high scores (doing well)
+- **One step red across the whole team?** Training issue — the team needs help on that step
+- **One rep red across all steps?** Individual coaching — they need 1:1 attention
+
+## Coaching Comments
+
+Managers can leave comments on specific moments in any recording. Reps see these in their app.
+
+**Good comments are:**
+- Specific — reference the exact moment
+- Balanced — note wins alongside areas to improve
+- Actionable — tell them what to do differently
+- Brief — 1-2 sentences
