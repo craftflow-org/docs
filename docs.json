@@ -62,11 +62,11 @@
           {
             "group": "Contact Center AI",
             "pages": [
-              "help/call-center-ai/coming-soon",
+              "help/call-center-ai/overview",
               "help/speed-to-lead/overview",
               "help/speed-to-lead/google-lsa",
               "help/speed-to-lead/custom-lead-sources",
-              "help/voice-agent/coming-soon"
+              "help/voice-agent/overview"
             ]
           },
           {
