@@ -1,0 +1,109 @@
+---
+title: "Scorecard Best Practices"
+description: "How to build scorecards that drive accurate AI scoring and meaningful coaching."
+---
+
+Scorecards are the foundation of Craft. Get them right and the AI becomes your best coaching tool. Get them wrong and scores feel random. This guide covers the 5 rules that separate great scorecards from frustrating ones.
+
+## How Scoring Works
+
+Each scorecard item is scored 0-5 based on what the AI can detect in the conversation:
+
+| Score | Meaning |
+|-------|---------|
+| 5 | Fully executed — nailed it |
+| 4 | Mostly there — minor room to improve |
+| 3 | Adequate — got the job done |
+| 2 | Partial — significant room to improve |
+| 1 | Barely addressed — minimally touched |
+| 0 | Missed — not addressed at all |
+| N/A | Not applicable to this conversation |
+
+## Rule 1: Be Specific and Objective
+
+The more precisely you describe the behavior, the more accurate the scoring.
+
+<Tabs>
+  <Tab title="Bad">
+    "Did the rep present multiple options to the customer?"
+  </Tab>
+  <Tab title="Good">
+    "Did the rep present at least three options (Good, Better, Best) starting with the Best option first? Did the rep clearly state what's included in each option and the differences?"
+  </Tab>
+</Tabs>
+
+## Rule 2: One Behavior Per Step
+
+Keep each step focused on a single behavior. This makes scoring accurate and coaching actionable.
+
+- **Bad:** "Present options, explain financing, and handle objections"
+- **Good:** Three separate steps — Options Presentation, Financing Explanation, Objection Handling
+
+When you combine behaviors, a rep who nails one but misses another gets an averaged score that helps no one.
+
+## Rule 3: Focus on Business-Driving Behaviors
+
+Ask yourself: **"Does this behavior directly impact close rate, average ticket, or customer satisfaction?"**
+
+**High-impact (include these):**
+- Options presentation
+- Objection handling
+- Value positioning
+- Financing discussion
+- Close attempt
+
+**Low-impact (skip these):**
+- Generic small talk
+- Rapport building (unless specific and measurable)
+- Administrative tasks
+
+## Rule 4: Be Explicit About Timing
+
+The AI doesn't enforce order based on step sequence. If timing matters, say so in the criteria.
+
+- **Bad:** "Check in with customer during the middle of the conversation"
+- **Good:** "Does the rep talk to the customer DURING the inspection? (after starting the inspection but before finishing it)"
+
+## Rule 5: Use Observable Criteria
+
+The AI can only score what it can detect in the transcript. Avoid subjective language.
+
+| Subjective (avoid) | Objective (use instead) |
+|---|---|
+| "Felt consultative" | "Asked at least 3 discovery questions and paused for responses" |
+| "Seemed confident" | "Used declarative statements ('This is what I recommend') rather than tentative language ('maybe', 'I think')" |
+| "Natural flow" | "Transitioned from inspection to presentation by summarizing findings before showing options" |
+
+**Test:** Ask yourself "Could two people reading the same transcript agree on whether this happened?" If not, make it more specific.
+
+## Advanced: Weights and N/A
+
+### Scorecard Weights
+
+Each item has a weight (default 1) that controls how much it affects the overall score. Bump high-impact steps to weight 2-3 so they move the needle more. See [Scorecard Weights](/help/getting-started/scorecard-weights) for the full math.
+
+### N/A Conditions
+
+Allow the AI to mark a step as "Not Applicable" when it doesn't apply. Always specify what triggers N/A.
+
+**Example:** "Explain membership benefits → Mark N/A if customer states they are already a member or rep references their existing membership."
+
+<Tip>
+Create separate steps with N/A conditions rather than one step with branching logic. It's cleaner and scores more accurately.
+</Tip>
+
+## Example: In-Home Sales Scorecard
+
+| # | Step | What to Score |
+|---|------|--------------|
+| 1 | Greeting & rapport | Did the rep introduce themselves by name and build rapport within the first 2 minutes? |
+| 2 | Discovery questions | Did the rep ask at least 3 questions about the customer's needs, timeline, and budget? |
+| 3 | Inspection walkthrough | Did the rep explain what they're inspecting and what they're looking for? |
+| 4 | Options presentation | Did the rep present at least 3 options (Good, Better, Best) starting with Best? |
+| 5 | Financing | Did the rep proactively mention financing options before the customer asked about price? |
+| 6 | Objection handling | When the customer raised concerns, did the rep acknowledge and address them? |
+| 7 | Close attempt | Did the rep ask for the business with a direct close question? |
+
+<Tip>
+Start with 5-8 steps. You can always add more later. Fewer steps = more accurate scoring and clearer coaching conversations.
+</Tip>

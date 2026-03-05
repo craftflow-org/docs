@@ -42,33 +42,42 @@
           {
             "group": "Getting Started",
             "pages": [
-              "help/overview"
+              "help/overview",
+              "help/getting-started/what-is-craft",
+              "help/getting-started/in-home-sales-ai",
+              "help/getting-started/call-center-ai",
+              "help/getting-started/admin-quick-start"
             ]
           },
           {
-            "group": "Call Recording & Analysis",
+            "group": "AI Ridealong",
             "pages": [
-              "help/call-recording/auto-start"
+              "help/call-recording/auto-start",
+              "help/ai-ridealong/edit-job-mapping",
+              {
+                "group": "Coach",
+                "pages": [
+                  "help/ai-ridealong/coach",
+                  "help/ai-ridealong/scorecard-best-practices",
+                  "help/getting-started/scorecard-weights"
+                ]
+              }
             ]
           },
           {
-            "group": "Speed to Lead",
+            "group": "Contact Center AI",
             "pages": [
-              "help/speed-to-lead/overview",
-              "help/speed-to-lead/google-lsa",
-              "help/speed-to-lead/custom-lead-sources"
-            ]
-          },
-          {
-            "group": "Call Center AI",
-            "pages": [
-              "help/call-center-ai/coming-soon"
-            ]
-          },
-          {
-            "group": "AI Voice Agent",
-            "pages": [
-              "help/voice-agent/coming-soon"
+              "help/call-center-ai/overview",
+              "help/call-center-ai/agent-coach-qa",
+              {
+                "group": "Speed to Lead",
+                "pages": [
+                  "help/speed-to-lead/overview",
+                  "help/speed-to-lead/google-lsa",
+                  "help/speed-to-lead/custom-lead-sources"
+                ]
+              },
+              "help/voice-agent/overview"
             ]
           },
           {
@@ -87,13 +96,40 @@
       },
       {
         "tab": "API Reference",
-        "openapi": "api/openapi.json",
         "groups": [
           {
             "group": "Overview",
             "pages": [
               "api/introduction",
               "api/authentication"
+            ]
+          },
+          {
+            "group": "Users",
+            "pages": [
+              "api/endpoints/list-users",
+              "api/endpoints/get-user"
+            ]
+          },
+          {
+            "group": "Teams",
+            "pages": [
+              "api/endpoints/list-teams",
+              "api/endpoints/get-team"
+            ]
+          },
+          {
+            "group": "Field Recordings",
+            "pages": [
+              "api/endpoints/list-recordings",
+              "api/endpoints/get-recording"
+            ]
+          },
+          {
+            "group": "Calls",
+            "pages": [
+              "api/endpoints/list-calls",
+              "api/endpoints/get-call"
             ]
           }
         ]
