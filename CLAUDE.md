@@ -62,6 +62,10 @@ Doing either will cause every endpoint to appear twice in the sidebar. Mintlify 
 
 We learned this through multiple production incidents. The root cause every time: two sources of truth for the same pages.
 
+**Corollary: never remove `"openapi": "api/openapi.json"` from the API Reference tab.**
+
+This has happened when editing `docs.json` for unrelated reasons (e.g. adding Help Center nav groups) — the tab-level `openapi` field gets accidentally dropped, and at the same time explicit endpoint groups get re-added. The result: endpoint pages 404 because the MDX files don't exist and auto-generation is disabled. Always verify the API Reference tab still has `"openapi": "api/openapi.json"` after any `docs.json` edit.
+
 ---
 
 ## Adding non-spec pages (guides, authentication docs, etc.)
@@ -98,5 +102,6 @@ mint validate   # check for build errors
 | Endpoints appear twice in sidebar | MDX files in `api/endpoints/` exist alongside spec auto-generation | Delete the MDX files; let the spec drive everything |
 | Endpoints appear twice in sidebar | Root-level `openapi` in `docs.json` AND tab-level `openapi` | Only ever put `openapi` on the tab, not at root level |
 | API pages are blank in production | `openapi` not declared on the tab | Ensure `"openapi": "api/openapi.json"` is on the API Reference tab in `docs.json` |
+| Endpoint pages 404 | `openapi` removed from tab + explicit endpoint groups re-added pointing to deleted MDX files | Remove the endpoint groups; restore `"openapi": "api/openapi.json"` on the tab |
 | New endpoint missing from sidebar | Operation lacks a `tags` value in the spec | Add the appropriate tag to the operation |
 | CI fails instantly (~6s) | Invalid `docs.json` schema | The `pages` array only accepts file paths — `"GET /path"` strings are rejected by the validator even though the Mintlify docs suggest that format |

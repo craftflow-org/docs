@@ -96,40 +96,13 @@
       },
       {
         "tab": "API Reference",
+        "openapi": "api/openapi.json",
         "groups": [
           {
             "group": "Overview",
             "pages": [
               "api/introduction",
               "api/authentication"
-            ]
-          },
-          {
-            "group": "Users",
-            "pages": [
-              "api/endpoints/list-users",
-              "api/endpoints/get-user"
-            ]
-          },
-          {
-            "group": "Teams",
-            "pages": [
-              "api/endpoints/list-teams",
-              "api/endpoints/get-team"
-            ]
-          },
-          {
-            "group": "Field Recordings",
-            "pages": [
-              "api/endpoints/list-recordings",
-              "api/endpoints/get-recording"
-            ]
-          },
-          {
-            "group": "Calls",
-            "pages": [
-              "api/endpoints/list-calls",
-              "api/endpoints/get-call"
             ]
           }
         ]
