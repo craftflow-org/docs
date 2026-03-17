@@ -1,0 +1,138 @@
+---
+title: "Outbound Campaigns"
+description: "Send multi-step SMS campaigns to your contacts and handle replies with AI or your team."
+---
+
+Outbound Campaigns lets you upload a list of contacts, build a multi-step SMS sequence, and let Craft handle delivery and replies — either with the AI messaging agent or by escalating directly to your team.
+
+## How It Works
+
+<Steps>
+  <Step title="Create an audience">
+    Upload a CSV of contacts with phone numbers, names, and any custom fields you want to use in your messages. Craft stores them as an **audience** you can reuse across campaigns.
+  </Step>
+  <Step title="Build your message sequence">
+    Write one or more SMS steps. Use variables like `{{first_name}}` or any custom column from your CSV to personalize each message. Set the timing — send immediately, or space steps days apart.
+  </Step>
+  <Step title="Choose how replies are handled">
+    Pick one of two behaviors:
+    - **Escalate** — customer replies create a task for your team with full message history
+    - **AI Agent** — the AI messaging agent continues the conversation automatically
+  </Step>
+  <Step title="Activate and monitor">
+    Activate the campaign and Craft sends messages at the scheduled times. Track delivery, responses, and opt-outs from the campaign detail page.
+  </Step>
+</Steps>
+
+## Audiences
+
+An audience is a reusable contact list. You can use the same audience across multiple campaigns.
+
+### Creating an audience
+
+1. Go to **Outbound → Audiences → New Audience**
+2. Give it a name and upload a CSV file
+
+Your CSV should include a header row. Craft recognizes these built-in columns automatically:
+
+| Column | Description |
+|---|---|
+| `phone` | Phone number (required for SMS campaigns) |
+| `first_name` | Contact's first name |
+| `last_name` | Contact's last name |
+| `email` | Email address |
+
+Any additional columns become **custom variables** you can use in your message templates. For example, a column named `service_type` becomes the variable `{{service_type}}`.
+
+<Tip>
+You can upload additional contacts to an existing audience at any time from the audience detail page. Each audience supports up to 1,000 contacts.
+</Tip>
+
+### Variables
+
+Every column in your CSV becomes a variable you can insert into campaign messages using double curly braces:
+
+- `{{first_name}}` → "Jane"
+- `{{service_type}}` → "HVAC maintenance"
+- `{{appointment_date}}` → "March 15"
+
+Variables that don't match a column are left as-is, so double-check your template before activating.
+
+## Campaigns
+
+A campaign is a sequence of one or more messages sent to an audience over time.
+
+### Creating a campaign
+
+1. Go to **Outbound → Campaigns → New Campaign**
+2. **Step 1 — Contacts**: Choose an existing audience or create a new one with a CSV upload
+3. **Step 2 — Messages**: Write your message steps. Set the delay (in days) and time of day for each step. Insert variables from your audience data.
+4. **Step 3 — Settings**: Name your campaign, choose reply behavior (AI agent or escalate), and review the sending phone number.
+
+The campaign is saved as a **draft**. Nothing is sent until you activate it.
+
+### Activating a campaign
+
+From the campaign detail page, click **Activate Campaign**. Craft will:
+
+1. Enroll all active audience members
+2. Schedule the first message based on the step timing
+3. Begin sending at the configured time
+
+<Note>
+If you activate a campaign after the first step's scheduled time has passed for the day (e.g., step is set for 10 AM but you activate at 3 PM), messages will be sent the following day at 10 AM — not immediately.
+</Note>
+
+### Campaign statuses
+
+| Status | Meaning |
+|---|---|
+| **Draft** | Campaign created but not yet sending |
+| **Active** | Messages are being sent on schedule |
+| **Paused** | Sending is temporarily stopped. Resume anytime. |
+| **Completed** | All steps have been sent to all contacts |
+| **Cancelled** | Campaign was permanently stopped |
+
+### Reply handling
+
+When a contact replies to a campaign message, Craft routes the reply based on your campaign's **response behavior** setting:
+
+<Tabs>
+  <Tab title="Escalate to Human">
+    The reply creates a conversation in your **Messages** inbox with full campaign history attached. A task is created for your team to follow up. Use this when you want your team to handle every response personally.
+  </Tab>
+  <Tab title="AI Agent">
+    The AI messaging agent picks up the conversation automatically. It sees the full campaign history and responds based on your messaging agent configuration. If the AI can't handle the request, it escalates to your team. Use this for high-volume campaigns where you want AI to qualify responses first.
+  </Tab>
+</Tabs>
+
+## Opt-outs
+
+Contacts who reply with **STOP** are automatically:
+
+1. Marked as opted out in the audience
+2. Removed from all active campaign enrollments
+3. Suppressed at the platform level so they won't receive future messages
+
+Opt-out handling is automatic and immediate — no manual action needed.
+
+## Limits
+
+- **1,000 contacts** per audience
+- Messages are sent from your configured messaging phone number
+- Contacts without a phone number are automatically skipped for SMS steps
+
+<AccordionGroup>
+  <Accordion title="Can I edit a campaign after activating it?">
+    You can pause an active campaign to stop sending, but you cannot edit the message content or steps of an active campaign. To make changes, cancel the campaign, create a new one with the updated content, and activate it.
+  </Accordion>
+  <Accordion title="What happens if I upload more contacts to an audience with an active campaign?">
+    New contacts are automatically enrolled in any active campaigns using that audience. They start from step 1 of the campaign.
+  </Accordion>
+  <Accordion title="Can I reuse an audience across multiple campaigns?">
+    Yes. Audiences are independent from campaigns. You can run multiple campaigns against the same audience.
+  </Accordion>
+  <Accordion title="How do I know if a message was delivered?">
+    The campaign detail page shows enrollment statuses: active (in progress), responded, completed, opted out, and bounced. Individual message delivery tracking is available in the enrollment timeline.
+  </Accordion>
+</AccordionGroup>
