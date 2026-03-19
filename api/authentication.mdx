@@ -16,9 +16,32 @@ curl https://data.craftflow.co/api/v1/users/ \
 
 ## Getting Your API Key
 
-Contact your Craft account manager to generate an API key for your company. The key is shown **once** at creation time — store it securely.
+You can generate API keys directly from the Craft web app:
 
-API keys are scoped to your company. All requests made with a key will only return data belonging to your company.
+<Steps>
+  <Step title="Go to Company Settings">
+    Log in at [app.craftflow.co](https://app.craftflow.co) and navigate to **Company Settings** from the sidebar.
+  </Step>
+  <Step title="Open the API Keys tab">
+    Click the **API Keys** tab.
+  </Step>
+  <Step title="Create a new key">
+    Click **Create API Key**, give it a descriptive name (e.g., "Production Integration"), and optionally set an expiration date. Click **Create key**.
+  </Step>
+  <Step title="Copy your key">
+    Your API key will be displayed **once**. Copy it immediately and store it somewhere secure — you will not be able to see it again.
+  </Step>
+</Steps>
+
+### Who can manage API keys?
+
+Only users with **Full Admin** or **Super Admin** permissions can create, rename, and revoke API keys. If you don't see the API Keys tab, ask an admin on your team to generate one for you.
+
+### Key details
+
+- API keys are **scoped to your company**. All requests made with a key will only return data belonging to your company.
+- You can revoke a key at any time from the API Keys tab. Revoked keys stop working immediately.
+- Optionally set an **expiration date** when creating a key. Keys with no expiration date remain valid until manually revoked.
 
 <Note>
   API keys are prefixed with `cf_live_` so they're easy to identify. Never commit them to source control or share them publicly.
