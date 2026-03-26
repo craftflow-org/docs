@@ -83,7 +83,10 @@ AI-extracted values can always be manually overridden. On any recording detail p
 
 - **AI values** show a sparkle icon and a confidence indicator
 - **Manual values** show a pen icon
-- Once you manually edit an AI value, it stays as the manual value
+
+<Note>
+If AI extraction runs again on a recording (e.g., when a new field is added), it will overwrite all AI-computed values — including ones you've manually edited. If you need a value to stick, consider using a manual field instead.
+</Note>
 
 ## CRM Sync
 
@@ -116,8 +119,8 @@ CRM sync only works for recordings that are linked to a CRM record (job/opportun
   <Accordion title="How quickly are AI fields extracted?">
     Within a few minutes of the recording being transcribed. All AI fields are extracted in a single pass, so adding more fields doesn't slow things down.
   </Accordion>
-  <Accordion title="Can I recompute AI values for a recording?">
-    Yes. On the recording detail page, use the recompute action to re-run AI extraction. This won't overwrite values you've manually edited.
+  <Accordion title="Will AI values update if I change a field's prompt?">
+    Changing a prompt only affects future recordings. Existing recordings keep their current values. If you need to re-extract, contact support.
   </Accordion>
   <Accordion title="What if the information isn't in the transcript?">
     The AI returns null and shows low confidence. Make sure your prompt tells the AI what to return when the info isn't mentioned (e.g., "return null if not discussed").
@@ -126,7 +129,7 @@ CRM sync only works for recordings that are linked to a CRM record (job/opportun
     No hard limit. However, more AI fields means a slightly longer extraction time per recording, so keep it focused on what your team actually uses.
   </Accordion>
   <Accordion title="Who can create and manage custom fields?">
-    Coaches and admins. All users with access to recordings can see the values, but only coaches and admins can create fields or edit values.
+    Any user in your company can create, edit, and manage custom fields and their values. Field visibility is based on display location settings — if a field is set to show on recording detail pages, anyone who can view that recording will see it.
   </Accordion>
   <Accordion title="Can I use custom fields for call center calls too?">
     Yes. When creating a field, set "Applies to" to **Calls** instead of Recordings. The field will show up on call detail and list pages instead.
