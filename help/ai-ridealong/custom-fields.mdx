@@ -1,0 +1,134 @@
+---
+title: "Custom Fields"
+description: "Extract structured data from every recording automatically with AI, or track it manually."
+---
+
+Custom fields let you pull specific data points out of every recording — automatically. Define what you want to track, write a prompt, and the AI extracts it from the transcript every time.
+
+You can also create manual fields for data your team fills in themselves.
+
+## How It Works
+
+1. You define a custom field (e.g., "System Type", "Materials Needed", "Financing Discussed")
+2. For AI fields, you write a plain-English prompt describing what to extract
+3. Every new recording is automatically analyzed and the value is filled in
+4. Values show up on recording detail pages, list views, and opportunity details
+
+## AI Fields vs Manual Fields
+
+**AI fields** are extracted automatically from the transcript. You write a prompt like:
+
+> "What type of HVAC system does the customer currently have? Return the system type or null if not mentioned."
+
+The AI reads the transcript, extracts the answer, and shows its confidence level (low, medium, or high). You can see the AI's reasoning for every extraction.
+
+**Manual fields** are filled in by your team. Use these for things the AI can't determine — like a rep's personal assessment of the customer's readiness to buy, or whether a follow-up was scheduled.
+
+## Creating a Custom Field
+
+Go to [AI Ridealong Settings > Custom Fields](https://app.craftflow.co/ai-ridealong/settings/custom-fields) and click **New Field**.
+
+<Steps>
+  <Step title="Choose the source">
+    Pick **AI-generated** if the system should extract it from transcripts, or **Manual** if your team will fill it in.
+  </Step>
+  <Step title="Name and configure">
+    Give it a clear name (e.g., "System Type"). Choose the value type:
+
+    | Type | Best for | Example |
+    |------|----------|---------|
+    | Text | Open-ended answers | "Lennox 2-ton split system" |
+    | Number | Quantities, prices | 12500 |
+    | Yes / No | Binary questions | true |
+    | Dropdown | Fixed set of options | "Residential", "Commercial" |
+
+    For dropdown fields, add at least 2 options.
+  </Step>
+  <Step title="Choose where it applies">
+    **Recordings** — for in-home appointment data. **Calls** — for call center data.
+  </Step>
+  <Step title="Pick display locations">
+    Choose where the field shows up: recording detail page, recordings list, opportunity detail, etc.
+  </Step>
+  <Step title="Write and test the AI prompt (AI fields only)">
+    Write a clear, specific prompt. Then use the test playground — pick a real recording and see what the AI extracts before you save.
+  </Step>
+</Steps>
+
+<Tip>
+Test your prompt against 3-4 different recordings before saving. This helps you catch edge cases and refine the wording.
+</Tip>
+
+## Writing Good AI Prompts
+
+The prompt is the most important part. A clear prompt gets accurate results.
+
+**Good prompts are:**
+- Specific about what to look for
+- Clear about the expected format
+- Explicit about what to return when the info isn't in the transcript
+
+**Examples:**
+
+| Field | Prompt |
+|-------|--------|
+| System Type | "What type of HVAC system does the customer currently have? Return the type and brand if mentioned, or null if not discussed." |
+| Materials Needed | "List all materials or products the rep recommended. Return as a comma-separated list, or null if none mentioned." |
+| Financing Discussed | "Did the rep discuss financing options with the customer? Return true or false." |
+| Lead Source | "How did the customer hear about the company? Return the source (e.g., 'Google', 'referral', 'yard sign') or null if not mentioned." |
+
+## Editing Values
+
+AI-extracted values can always be manually overridden. On any recording detail page, click the field value to edit it.
+
+- **AI values** show a sparkle icon and a confidence indicator
+- **Manual values** show a pen icon
+- Once you manually edit an AI value, it stays as the manual value
+
+## CRM Sync
+
+If you have a CRM integration connected (HubSpot, Salesforce, etc.), you can sync custom field values directly to your CRM.
+
+On the [custom field editor page](https://app.craftflow.co/ai-ridealong/settings/custom-fields), open any field and scroll to the **Sync to CRM** panel.
+
+<Steps>
+  <Step title="Enable sync">
+    Toggle on "Sync to [your CRM]".
+  </Step>
+  <Step title="Choose the object and property">
+    Pick which CRM object to sync to (e.g., Opportunity, Deal, Account) and which property to write the value to.
+  </Step>
+  <Step title="Save the mapping" />
+  <Step title="Test it">
+    Pick a recording that's linked to a CRM record, click **Send test**, and verify the value appears in your CRM.
+  </Step>
+</Steps>
+
+Once saved, every new recording automatically pushes the extracted value to your CRM.
+
+<Note>
+CRM sync only works for recordings that are linked to a CRM record (job/opportunity). If a recording isn't matched to a job, there's nowhere to push the value.
+</Note>
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="How quickly are AI fields extracted?">
+    Within a few minutes of the recording being transcribed. All AI fields are extracted in a single pass, so adding more fields doesn't slow things down.
+  </Accordion>
+  <Accordion title="Can I recompute AI values for a recording?">
+    Yes. On the recording detail page, use the recompute action to re-run AI extraction. This won't overwrite values you've manually edited.
+  </Accordion>
+  <Accordion title="What if the information isn't in the transcript?">
+    The AI returns null and shows low confidence. Make sure your prompt tells the AI what to return when the info isn't mentioned (e.g., "return null if not discussed").
+  </Accordion>
+  <Accordion title="Is there a limit on how many custom fields I can create?">
+    No hard limit. However, more AI fields means a slightly longer extraction time per recording, so keep it focused on what your team actually uses.
+  </Accordion>
+  <Accordion title="Who can create and manage custom fields?">
+    Coaches and admins. All users with access to recordings can see the values, but only coaches and admins can create fields or edit values.
+  </Accordion>
+  <Accordion title="Can I use custom fields for call center calls too?">
+    Yes. When creating a field, set "Applies to" to **Calls** instead of Recordings. The field will show up on call detail and list pages instead.
+  </Accordion>
+</AccordionGroup>

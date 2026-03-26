@@ -54,6 +54,7 @@
             "pages": [
               "help/call-recording/auto-start",
               "help/ai-ridealong/edit-job-mapping",
+              "help/ai-ridealong/custom-fields",
               {
                 "group": "Coach",
                 "pages": [
