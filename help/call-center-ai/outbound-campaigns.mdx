@@ -1,9 +1,9 @@
 ---
 title: "Outbound Campaigns"
-description: "Send multi-step SMS campaigns to your contacts and handle replies with AI or your team."
+description: "Send multi-step SMS and email campaigns to your contacts and handle replies with AI or your team."
 ---
 
-Outbound Campaigns lets you upload a list of contacts, build a multi-step SMS sequence, and let Craft handle delivery and replies — either with the AI messaging agent or by escalating directly to your team.
+Outbound Campaigns lets you upload a list of contacts, build a multi-step message sequence, and let Craft handle delivery and replies — either with the AI messaging agent or by escalating directly to your team.
 
 ## How It Works
 
@@ -106,6 +106,103 @@ When a contact replies to a campaign message, Craft routes the reply based on yo
   </Tab>
 </Tabs>
 
+## Adding Contacts via Webhook
+
+Instead of uploading a CSV, you can add contacts to an audience programmatically using the API. This is useful when you want to trigger a campaign from an external system — for example, when someone fills out a form on your website.
+
+### How it works
+
+1. Create an audience and a campaign in Craft with **Send Immediately** enabled on the first step
+2. Activate the campaign
+3. When a lead comes in, your system calls the webhook to add them to the audience
+4. Craft auto-enrolls them in the campaign and sends the first message within about a minute
+
+### Setup
+
+<Steps>
+  <Step title="Create an audience">
+    Go to **Outbound → Audiences → New Audience** and create an empty audience. You don't need to upload a CSV — contacts will be added via the webhook.
+  </Step>
+  <Step title="Create a campaign with immediate send">
+    Create a campaign targeting that audience. On the first step, enable **Send Immediately** — this ensures the message fires right away instead of waiting for a scheduled time. Add any follow-up steps with normal delay timing.
+  </Step>
+  <Step title="Activate the campaign">
+    Activate the campaign. It will sit idle until contacts are added.
+  </Step>
+  <Step title="Copy your webhook URL">
+    Open the audience detail page. You'll see a **Webhook URL** section with a unique URL like:
+
+    ```
+    https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/
+    ```
+
+    Click **Copy** to copy it. Keep this URL private — anyone with it can add contacts to your audience.
+  </Step>
+  <Step title="Send contacts to the webhook">
+    From your website or external system, POST JSON to the webhook URL. No API key or auth headers needed — the token in the URL is the authentication.
+
+    ```bash
+    curl -X POST https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/ \
+      -H "Content-Type: application/json" \
+      -d '{
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "phone": "5551234567",
+        "email": "jane@example.com",
+        "custom_fields": {
+          "service_type": "HVAC",
+          "source": "website"
+        }
+      }'
+    ```
+  </Step>
+</Steps>
+
+### Webhook reference
+
+**Method:** `POST`
+**URL:** `https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/`
+**Auth:** None required — the token in the URL is the authentication
+
+<ParamField body="phone" type="string">
+  The contact's phone number. At least one of `phone` or `email` is required. Accepts most common formats: `+15551234567`, `(555) 123-4567`, `555-123-4567`.
+</ParamField>
+
+<ParamField body="email" type="string">
+  The contact's email address. At least one of `phone` or `email` is required.
+</ParamField>
+
+<ParamField body="first_name" type="string">
+  Contact's first name. Available as `{{first_name}}` in message templates.
+</ParamField>
+
+<ParamField body="last_name" type="string">
+  Contact's last name. Available as `{{last_name}}` in message templates.
+</ParamField>
+
+<ParamField body="custom_fields" type="object">
+  Any additional key-value pairs. Each key becomes a template variable — for example, `{"service_type": "HVAC"}` becomes `{{service_type}}` in your campaign messages.
+</ParamField>
+
+### Responses
+
+| Status | Meaning |
+|--------|---------|
+| `201` | New contact created and enrolled in active campaigns |
+| `200` | Contact with this phone or email already exists in the audience (idempotent) |
+| `400` | Missing phone and email, or audience is at capacity |
+| `404` | Webhook token is invalid or the audience has been deleted |
+
+<Note>
+  Duplicate calls are safe. If a contact with the same phone number or email already exists in the audience, the endpoint returns the existing contact without creating a duplicate or sending duplicate messages.
+</Note>
+
+### Integration guides
+
+The webhook works with any system that can make HTTP requests — Zapier, Make, custom code, WordPress plugins, etc. The setup is identical to the [Custom Lead Sources webhook](/help/speed-to-lead/custom-lead-sources#integration-guides), just with a different URL and field names.
+
+---
+
 ## Opt-outs
 
 Contacts who reply with **STOP** are automatically:
@@ -127,7 +224,7 @@ Opt-out handling is automatic and immediate — no manual action needed.
     You can pause an active campaign to stop sending, but you cannot edit the message content or steps of an active campaign. To make changes, cancel the campaign, create a new one with the updated content, and activate it.
   </Accordion>
   <Accordion title="What happens if I upload more contacts to an audience with an active campaign?">
-    New contacts are automatically enrolled in any active campaigns using that audience. They start from step 1 of the campaign.
+    New contacts are automatically enrolled in any active campaigns using that audience. They start from step 1 of the campaign. This applies to both CSV uploads and contacts added via the webhook.
   </Accordion>
   <Accordion title="Can I reuse an audience across multiple campaigns?">
     Yes. Audiences are independent from campaigns. You can run multiple campaigns against the same audience.
