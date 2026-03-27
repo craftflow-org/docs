@@ -1020,6 +1020,145 @@
           }
         }
       }
+    },
+    "/outbound-campaigns/audiences/{audience_id}/add-member/": {
+      "post": {
+        "operationId": "addAudienceMember",
+        "summary": "Add Audience Member",
+        "description": "Add a single contact to an outbound campaign audience. The contact is automatically enrolled in any active campaigns targeting this audience.\n\nIdempotent: if a contact with the same phone number or email already exists in the audience, the existing contact is returned without creating a duplicate.",
+        "tags": ["Outbound Campaigns"],
+        "parameters": [
+          {
+            "name": "audience_id",
+            "in": "path",
+            "description": "The unique identifier of the audience.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string",
+                    "description": "Contact's first name. Available as `{{first_name}}` in campaign message templates.",
+                    "maxLength": 255
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "description": "Contact's last name. Available as `{{last_name}}` in campaign message templates.",
+                    "maxLength": 255
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number. Accepts most common formats (`+15551234567`, `555-123-4567`, `(555) 123-4567`). At least one of `phone` or `email` is required.",
+                    "maxLength": 50
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address. At least one of `phone` or `email` is required."
+                  },
+                  "custom_fields": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "Arbitrary key-value pairs. Each key becomes a template variable in campaign messages (e.g., `{\"service_type\": \"HVAC\"}` → `{{service_type}}`)."
+                  }
+                }
+              },
+              "example": {
+                "first_name": "Jane",
+                "last_name": "Doe",
+                "phone": "5551234567",
+                "email": "jane@example.com",
+                "custom_fields": {
+                  "service_type": "HVAC",
+                  "source": "website"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contact created and enrolled in active campaigns.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudienceMember"
+                },
+                "example": {
+                  "id": "f1e2d3c4-b5a6-7890-cdef-123456789012",
+                  "created_at": "2026-03-27T14:30:00Z",
+                  "first_name": "Jane",
+                  "last_name": "Doe",
+                  "phone": "+15551234567",
+                  "email": "jane@example.com",
+                  "custom_fields": {
+                    "service_type": "HVAC",
+                    "source": "website"
+                  },
+                  "status": "active"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Contact with this phone or email already exists. Existing contact returned (idempotent).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AudienceMember"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error — missing phone and email, invalid email format, or audience is at capacity.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "detail": "At least one of 'phone' or 'email' is required."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Audience not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1031,6 +1170,51 @@
       }
     },
     "schemas": {
+      "AudienceMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the audience member."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the member was added to the audience."
+          },
+          "first_name": {
+            "type": "string",
+            "description": "Contact's first name."
+          },
+          "last_name": {
+            "type": "string",
+            "description": "Contact's last name."
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone number in E.164 format."
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email address."
+          },
+          "custom_fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Custom key-value pairs attached to this contact."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "opted_out", "do_not_contact"],
+            "description": "Current status of the audience member."
+          }
+        },
+        "required": ["id", "created_at", "first_name", "last_name", "phone", "email", "custom_fields", "status"]
+      },
       "User": {
         "type": "object",
         "properties": {
