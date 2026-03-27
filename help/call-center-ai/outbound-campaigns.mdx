@@ -129,12 +129,20 @@ Instead of uploading a CSV, you can add contacts to an audience programmatically
   <Step title="Activate the campaign">
     Activate the campaign. It will sit idle until contacts are added.
   </Step>
+  <Step title="Copy your webhook URL">
+    Open the audience detail page. You'll see a **Webhook URL** section with a unique URL like:
+
+    ```
+    https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/
+    ```
+
+    Click **Copy** to copy it. Keep this URL private — anyone with it can add contacts to your audience.
+  </Step>
   <Step title="Send contacts to the webhook">
-    From your website or external system, make a POST request to add each contact:
+    From your website or external system, POST JSON to the webhook URL. No API key or auth headers needed — the token in the URL is the authentication.
 
     ```bash
-    curl -X POST https://data.craftflow.co/api/outbound-campaigns/audiences/{audience_id}/add-member/ \
-      -H "Authorization: Bearer cf_live_your_api_key_here" \
+    curl -X POST https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/ \
       -H "Content-Type: application/json" \
       -d '{
         "first_name": "Jane",
@@ -153,8 +161,8 @@ Instead of uploading a CSV, you can add contacts to an audience programmatically
 ### Webhook reference
 
 **Method:** `POST`
-**URL:** `https://data.craftflow.co/api/outbound-campaigns/audiences/{audience_id}/add-member/`
-**Auth:** Bearer token (API key)
+**URL:** `https://data.craftflow.co/api/outbound-campaigns/webhook/{your-token}/`
+**Auth:** None required — the token in the URL is the authentication
 
 <ParamField body="phone" type="string">
   The contact's phone number. At least one of `phone` or `email` is required. Accepts most common formats: `+15551234567`, `(555) 123-4567`, `555-123-4567`.
@@ -183,7 +191,7 @@ Instead of uploading a CSV, you can add contacts to an audience programmatically
 | `201` | New contact created and enrolled in active campaigns |
 | `200` | Contact with this phone or email already exists in the audience (idempotent) |
 | `400` | Missing phone and email, or audience is at capacity |
-| `401` | Missing or invalid API key |
+| `404` | Webhook token is invalid or the audience has been deleted |
 
 <Note>
   Duplicate calls are safe. If a contact with the same phone number or email already exists in the audience, the endpoint returns the existing contact without creating a duplicate or sending duplicate messages.

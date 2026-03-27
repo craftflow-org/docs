@@ -1021,17 +1021,18 @@
         }
       }
     },
-    "/outbound-campaigns/audiences/{audience_id}/add-member/": {
+    "/outbound-campaigns/webhook/{webhook_token}/": {
       "post": {
         "operationId": "addAudienceMember",
-        "summary": "Add Audience Member",
-        "description": "Add a single contact to an outbound campaign audience. The contact is automatically enrolled in any active campaigns targeting this audience.\n\nIdempotent: if a contact with the same phone number or email already exists in the audience, the existing contact is returned without creating a duplicate.",
+        "summary": "Add Audience Member (Webhook)",
+        "description": "Add a single contact to an outbound campaign audience via a public webhook. The contact is automatically enrolled in any active campaigns targeting this audience.\n\nNo API key or auth header is required — the webhook token in the URL is the authentication. You can find your webhook URL on the audience detail page in Craft.\n\nIdempotent: if a contact with the same phone number or email already exists in the audience, the existing contact is returned without creating a duplicate.",
         "tags": ["Outbound Campaigns"],
+        "security": [],
         "parameters": [
           {
-            "name": "audience_id",
+            "name": "webhook_token",
             "in": "path",
-            "description": "The unique identifier of the audience.",
+            "description": "The audience's unique webhook token. Found on the audience detail page in Craft.",
             "required": true,
             "schema": {
               "type": "string",
@@ -1137,18 +1138,8 @@
               }
             }
           },
-          "401": {
-            "description": "Missing or invalid API key.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
           "404": {
-            "description": "Audience not found.",
+            "description": "Webhook token is invalid or the audience has been deleted.",
             "content": {
               "application/json": {
                 "schema": {
