@@ -1452,6 +1452,12 @@
             "description": "The data type of the field's value. Determines the JSON type returned in `value`."
           },
           "value": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "boolean" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
             "description": "The field's value. The JSON type depends on `value_type`: `text` → string, `number` → number, `boolean` → boolean, `single_select` → string, `multi_select` → array of strings."
           },
           "source": {
