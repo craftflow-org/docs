@@ -473,7 +473,7 @@
                   "type": "object",
                   "properties": {
                     "data": {
-                      "$ref": "#/components/schemas/FieldRecording"
+                      "$ref": "#/components/schemas/FieldRecordingDetail"
                     }
                   },
                   "required": ["data"]
@@ -490,7 +490,23 @@
                       "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
                       "full_name": "John Doe"
                     },
-                    "created_at": "2025-07-01T09:00:00Z"
+                    "created_at": "2025-07-01T09:00:00Z",
+                    "custom_fields": [
+                      {
+                        "name": "Customer Interest",
+                        "slug": "customer-interest",
+                        "value_type": "single_select",
+                        "value": "High",
+                        "source": "ai"
+                      },
+                      {
+                        "name": "Quoted Price",
+                        "slug": "quoted-price",
+                        "value_type": "number",
+                        "value": 12500,
+                        "source": "manual"
+                      }
+                    ]
                   }
                 }
               }
@@ -1417,6 +1433,58 @@
           }
         },
         "required": ["id", "name", "start_time", "end_time", "audio_duration_seconds", "score", "user", "created_at"]
+      },
+      "FieldRecordingCustomField": {
+        "type": "object",
+        "description": "A custom field value attached to a field recording. Custom fields are configured per company and can be AI-computed or manually entered.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the custom field."
+          },
+          "slug": {
+            "type": "string",
+            "description": "Stable machine-readable identifier for the custom field, unique within the company."
+          },
+          "value_type": {
+            "type": "string",
+            "enum": ["text", "number", "boolean", "single_select", "multi_select"],
+            "description": "The data type of the field's value. Determines the JSON type returned in `value`."
+          },
+          "value": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "boolean" },
+              { "type": "array", "items": { "type": "string" } }
+            ],
+            "description": "The field's value. The JSON type depends on `value_type`: `text` → string, `number` → number, `boolean` → boolean, `single_select` → string, `multi_select` → array of strings."
+          },
+          "source": {
+            "type": "string",
+            "enum": ["ai", "manual"],
+            "description": "Whether the value was produced by AI extraction from the transcript or manually entered."
+          }
+        },
+        "required": ["name", "slug", "value_type", "value", "source"]
+      },
+      "FieldRecordingDetail": {
+        "allOf": [
+          { "$ref": "#/components/schemas/FieldRecording" },
+          {
+            "type": "object",
+            "properties": {
+              "custom_fields": {
+                "type": "array",
+                "description": "Custom field values attached to this recording. Returned only on the retrieve endpoint, not on list.",
+                "items": {
+                  "$ref": "#/components/schemas/FieldRecordingCustomField"
+                }
+              }
+            },
+            "required": ["custom_fields"]
+          }
+        ]
       },
       "Call": {
         "type": "object",
