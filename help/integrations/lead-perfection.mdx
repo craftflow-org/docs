@@ -1,0 +1,51 @@
+---
+title: "LeadPerfection"
+description: "Connect Craft to LeadPerfection."
+---
+
+Link your accounts so that Craft recording and AI-analysis data appears in LeadPerfection, and key deal data (dollar value, outcome, etc.) appears in Craft.
+
+<Note>
+You must have admin accounts for both LeadPerfection and Craft to complete this process.
+</Note>
+
+## Steps to Connect
+
+### 1. Getting Access in LeadPerfection
+
+<Steps>
+  <Step title="Log into your LeadPerfection instance" />
+  <Step title="Create a new user">
+    Go to **Security** &gt; **Employees**. Click the **+** to add a new user, and enter **Craft AI** as the First Name, Last Name, and Username — then press **SAVE**.
+  </Step>
+  <Step title="Assign a password">
+    Navigate to **Security** &gt; **Passwords**. Find the new user you created in the previous step and assign a password.
+  </Step>
+  <Step title="Grant API access">
+    Navigate to **Security** &gt; **User Access**. Using the search box on top, type in **Craft AI** to find the recently created user's row.
+
+    - Click the **Pencil and Paper** icon to edit the row.
+    - On the right side/tab under **Function Level Security**, change the dropdown from **LeadDetail** to **API Security**.
+    - Select the following four APIs using the checkboxes, then save:
+      - `GetSalesApptDetailDateRange`
+      - `GetSalesApptDispProd`
+      - `AddNotes`
+      - `UpdateSalesApptDetail3`
+  </Step>
+  <Step title="Gather your credentials">
+    For the next step, you'll need:
+
+    - The **username** and **password** you just set.
+    - Your **Client ID** — the first 4 letters/numbers found in the URL before `leadperfection.com` when you're logged into your LeadPerfection account on web.
+  </Step>
+</Steps>
+
+### 2. Setting up the Integration in Craft
+
+Email your contact at Craft with your LeadPerfection **username**, **password**, and **Client ID**, and we'll finish wiring up the integration on our side.
+
+That's it — once connected, data will begin syncing between the platforms every hour or so. You may need to close and re-open each application to see the connection take effect.
+
+## Need Help?
+
+Reach out to your contact at Craft, or email support@craftflow.com.
