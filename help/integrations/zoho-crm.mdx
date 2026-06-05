@@ -1,0 +1,95 @@
+---
+title: "Zoho CRM"
+description: "Connect Craft to Zoho CRM."
+---
+
+Link your accounts so that Deal, Contact, and Event data from Zoho flows into Craft as Jobs, Customers, and Appointments — and so that Craft recordings, AI summaries, and briefings appear back on the matching Zoho Deal.
+
+<Note>
+You must have admin accounts for both [Zoho CRM](https://www.zoho.com/crm/) and [Craft](https://app.craftflow.co) to complete this process.
+</Note>
+
+## Steps to Connect
+
+### 1. Connect Zoho CRM in Craft
+
+<Steps>
+  <Step title="Open Integrations in Craft">
+    In the Craft web app, go to [**Company Settings &gt; Integrations**](https://app.craftflow.co/company-settings/integrations).
+  </Step>
+  <Step title="Start the Zoho connection">
+    Open the [**Zoho CRM**](https://app.craftflow.co/company-settings/integrations/zoho_crm) integration and click **Connect Zoho CRM**. You'll be redirected to Zoho to sign in.
+  </Step>
+  <Step title="Sign in with the right Zoho user">
+    Sign in with a Zoho user that has access to every module and field you want Craft to see. Craft inherits this user's record-level permissions, so connecting with a limited user will hide data from Craft as well.
+  </Step>
+  <Step title="Approve the requested scopes">
+    Review and approve Craft's requested permissions (see [Authentication and Permissions](#authentication-and-permissions) below for the full list).
+  </Step>
+  <Step title="You're back in Craft">
+    Zoho redirects you back to Craft. The **Field Mapping Wizard** will appear automatically so you can finish configuration.
+  </Step>
+</Steps>
+
+<Note>
+Craft supports all [Zoho data centers](https://www.zoho.com/crm/developer/docs/api/v6/multi-dc.html) (US, EU, IN, AU, JP, CA). The correct region is detected automatically during sign-in — no extra configuration required.
+</Note>
+
+### 2. Configure Field Mapping
+
+After connecting, the Field Mapping Wizard guides you through three steps.
+
+<Steps>
+  <Step title="Choose the Zoho modules to sync">
+    For each Craft entity, choose the Zoho module it should map to. The defaults are:
+
+    | Craft entity   | Zoho module |
+    | -------------- | ----------- |
+    | Jobs           | Deals       |
+    | Contacts       | Contacts    |
+    | Appointments   | Events      |
+
+    You can point Jobs and Appointments at the same module (e.g. both at Deals) if that matches your workflow, or use [custom modules](https://www.zoho.com/crm/developer/docs/api/v6/modules-api.html).
+  </Step>
+  <Step title="Map fields within each module">
+    Craft pre-populates sensible defaults — for example:
+
+    - **Deals:** `Deal_Name` &rarr; name, `Stage` &rarr; stage, `Amount` &rarr; amount
+    - **Contacts:** `First_Name`, `Last_Name`, `Email`, `Phone`, `Mobile`
+    - **Events:** `Start_DateTime`, `End_DateTime`
+
+    Adjust or extend the mappings as needed. Any readable Zoho [custom field](https://www.zoho.com/crm/help/customization/custom-fields.html) can be added here.
+  </Step>
+  <Step title="Save">
+    Saving registers webhooks with Zoho and kicks off an initial backfill of the last 90 days of data. You can rerun the wizard at any time from the [Zoho CRM integration page](https://app.craftflow.co/company-settings/integrations/zoho_crm).
+  </Step>
+</Steps>
+
+## Authentication and Permissions
+
+Craft uses Zoho's standard [OAuth 2.0 flow](https://www.zoho.com/crm/developer/docs/api/v6/auth-request.html) — there are no API keys to copy and paste, and you can revoke access at any time from your [Zoho account's connected apps](https://accounts.zoho.com/home#sessions/connectedapps).
+
+The [scopes](https://www.zoho.com/crm/developer/docs/api/v6/scopes.html) Craft requests:
+
+| Scope                              | Why we need it                                  |
+| ---------------------------------- | ----------------------------------------------- |
+| `ZohoCRM.modules.ALL`              | Read and write CRM records                      |
+| `ZohoCRM.settings.fields.READ`     | Discover available fields for mapping           |
+| `ZohoCRM.settings.modules.READ`    | Discover available modules                      |
+| `ZohoCRM.users.ALL`                | Map Zoho users to Craft reps                    |
+| `ZohoCRM.org.ALL`                  | Read organization metadata                      |
+| `ZohoCRM.notifications.ALL`        | Receive real-time webhook notifications         |
+| `ZohoSearch.securesearch.READ`     | Look up records during sync                     |
+
+Access tokens are refreshed automatically every hour using the long-lived refresh token, so once connected the integration runs without intervention. Tokens are stored encrypted at rest. If a token is ever revoked on the Zoho side, the [Integrations page](https://app.craftflow.co/company-settings/integrations) surfaces an error and prompts you to reconnect.
+
+## Best practices
+
+- Connect with a Zoho user whose permissions reflect everything you want Craft to see. Craft inherits that user's record visibility.
+- Before mapping, confirm in Zoho that the field types match what you expect on the Craft side (e.g. currency for **Amount**, lookup for **Contact_Name** on Deals).
+- If you use [custom modules](https://www.zoho.com/crm/developer/docs/api/v6/modules-api.html) instead of standard Deals/Contacts, select them during Step 1 of the wizard — everything downstream will adapt.
+- If you ever rename or restructure modules in Zoho, rerun the Field Mapping Wizard from the [Zoho CRM integration page](https://app.craftflow.co/company-settings/integrations/zoho_crm) so Craft picks up the new schema.
+
+## Need Help?
+
+Reach out to your contact at Craft, or email [support@craftflow.com](mailto:support@craftflow.com).

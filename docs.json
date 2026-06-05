@@ -85,7 +85,8 @@
           {
             "group": "Integrations",
             "pages": [
-              "help/integrations/lead-perfection"
+              "help/integrations/lead-perfection",
+              "help/integrations/zoho-crm"
             ]
           },
           {
