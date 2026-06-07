@@ -63,3 +63,58 @@ Craft integrates with your existing phone system (RingCentral, Five9, or other V
 <Info>
 Agent Coach & QA setup is handled during onboarding with your Craft account manager. Contact support@craftflow.com to get started.
 </Info>
+
+---
+
+## CSR Performance Dashboard
+
+The dashboard gives managers two independent views of agent performance: how often they book, and how well they follow the process.
+
+### Booking Rate
+
+Booking Rate measures how often an agent converts a real customer call into a booked appointment.
+
+```
+Booking Rate = Booked Appointments ÷ Qualified Calls
+```
+
+Spam, robocalls, solicitors, and non-customer calls are automatically filtered out. Only real inbound opportunities count.
+
+{/* SCREENSHOT: Leaderboard with Booking Rate column. Show 4–5 agents with varying rates. */}
+
+### Call Quality Score
+
+Call Quality Score measures how well an agent follows your booking process on each evaluated call, scored against your custom scorecard:
+
+- **Script adherence** — did they follow the booking steps in order?
+- **Data capture** — did they collect all required customer information?
+- **Soft skills** — tone, empathy, and professionalism
+- **Objection handling** — did they respond appropriately when the customer hesitated?
+
+Call Quality Score is tracked separately for inbound and outbound calls. Use the **All Calls / Inbound / Outbound** toggle to switch between views.
+
+{/* SCREENSHOT: Call Quality Score column on the leaderboard, same agents as above. */}
+
+### Overall Score
+
+The Overall Score (labeled **Combined Score** in the dashboard) is a volume-weighted average of Call Quality Score across both inbound and outbound calls.
+
+```
+Overall Score = (Call Quality Score × Inbound Calls + Call Quality Score × Outbound Calls) ÷ Total Calls
+```
+
+**What it is not:** Overall Score does not factor in Booking Rate. The two metrics are completely independent. A high Booking Rate with a lower Overall Score means an agent converts well but skips steps. A high Overall Score with a lower Booking Rate means strong process adherence but needs help closing.
+
+This is why an agent can lead the leaderboard in Booking Rate but have a lower Overall Score than a teammate — and vice versa.
+
+{/* SCREENSHOT: Full leaderboard with all three columns visible. Ideally shows one agent leading in Booking Rate with a lower Overall Score, and another with the reverse — this is the key visual. */}
+
+### Filtering by Call Type
+
+Use the **All Calls / Inbound / Outbound** toggle to filter your view. Available in three places:
+
+- **Dashboard** — top-level performance summary
+- **CSR Leaderboard** — per-agent rankings
+- **Call List** — individual call records
+
+{/* SCREENSHOT: The toggle control on the leaderboard, showing All Calls selected with Inbound and Outbound as options. */}
