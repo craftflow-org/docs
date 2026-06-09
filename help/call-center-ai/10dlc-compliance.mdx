@@ -1,0 +1,90 @@
+---
+title: "10DLC Compliance"
+description: "What Craft needs from you to register your brand and campaign for SMS."
+---
+
+To send SMS through Craft — [Speed to Lead](/help/speed-to-lead/overview), [Outbound Campaigns](/help/call-center-ai/outbound-campaigns), or the messaging agent — your business must be registered through **10DLC** (10-Digit Long Code), the US carrier registration system for business SMS. Craft files the registration on your behalf through our messaging provider, [Telnyx](https://support.telnyx.com/en/collections/3147004-10dlc-and-toll-free-text-messaging-compliance-guide), but we need you to supply the information below.
+
+There are two pieces: a **brand** (your business) and one or more **campaigns** (the messaging use case). Both have to be filed and approved before you can send.
+
+## Brand information
+
+Filed once per business. Send these to your Craft contact at onboarding.
+
+| Field | What it is |
+|---|---|
+| **Legal company name** | The exact name on your EIN registration. |
+| **DBA / brand name** | Any "Doing Business As" name customers know you by. Use the legal name here too if there's no DBA. |
+| **Legal entity type** | Private Company, Publicly Traded Company, Non-Profit, or Government. |
+| **Country of registration** | Where your business is registered (typically US). |
+| **EIN** | Your Employer Identification Number, exactly as it appears on IRS records. |
+| **EIN issuing country** | Country that issued the EIN. |
+| **Business address** | Street, city, state, zip. Must match the address on your EIN registration. **No PO boxes.** |
+| **Stock symbol & exchange** | Only required if you're a publicly traded company. |
+
+## Campaign information
+
+Filed once per messaging use case. Most customers run one "Mixed" campaign that covers both Speed to Lead and outbound.
+
+| Field | What it is |
+|---|---|
+| **Terms and Conditions URL** | Public link on your domain. Has specific requirements — see below. |
+| **Privacy Policy URL** | Public link on your domain. Has specific requirements — see below. |
+
+## Privacy policy requirements
+
+Carriers fetch the URL you supply and read the policy directly. Three things have to be present, or the campaign is rejected:
+
+1. **A dedicated SMS / messaging section** listing the data you collect when someone opts in (name, phone number, message content).
+2. **An explicit no-sharing-for-marketing statement** — see the language below. This sentence has to override any general "we may share data with advertising platforms" clause elsewhere in the policy.
+3. **Opt-out and help disclosure** — STOP to opt out, HELP for help, message and data rates may apply, frequency varies.
+
+### Sample language
+
+Paste this into your privacy policy under a heading like "SMS / Text Messaging." The **no-sharing** sentence should appear verbatim — carriers grep for it.
+
+```text
+SMS / Text Messaging
+
+When you opt in to receive text messages from us, we collect your name,
+phone number, and the content of messages you send. We use this information
+to respond to your inquiries, schedule appointments, and follow up about
+services you have requested.
+
+No mobile information will be shared with third parties or affiliates for
+marketing or promotional purposes. All other categories of personal data
+exclude text messaging originator opt-in data and consent; this information
+will not be shared with any third parties.
+
+You can opt out at any time by replying STOP to any message. Reply HELP for
+assistance. Message and data rates may apply. Message frequency varies.
+```
+
+## Terms and conditions requirements
+
+Hosted on your own domain alongside the privacy policy. Carriers check that the document is reachable via a normal link (popups don't count) and contains the following:
+
+1. **Brand / program name** — identifies who's sending.
+2. **Description of the messaging program** — what kinds of messages consumers will receive.
+3. **Message frequency disclosure** — e.g. *"Message frequency varies."*
+4. **Rates disclosure** — *"Message and data rates may apply."*
+5. **Opt-out instructions** — reply STOP to unsubscribe.
+6. **Customer care contact** — an email or phone number for support.
+7. **Reference to your privacy policy** — link to the privacy policy.
+
+A short standalone "SMS Terms of Service" page on your website is usually the cleanest way to handle this.
+
+## Timeline
+
+- **Brand review:** instant for most, up to 1 business day for vetting edge cases.
+- **Campaign review:** typically 1–5 business days.
+
+## Reference
+
+Full carrier-side documentation lives in the Telnyx help center:
+
+- [10DLC and Toll-Free Compliance Guide](https://support.telnyx.com/en/collections/3147004-10dlc-and-toll-free-text-messaging-compliance-guide)
+- [10DLC Campaign Compliance Requirements](https://support.telnyx.com/en/articles/9940291-10dlc-campaign-compliance-requirements)
+- [10DLC Privacy Policy Requirements](https://support.telnyx.com/en/articles/10645583-10dlc-privacy-policy)
+
+Questions? Reach out to your Craft account manager or email support@craftflow.com.
